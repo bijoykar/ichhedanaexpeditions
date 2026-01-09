@@ -22,7 +22,7 @@ $featuredReviews = $reviewModel->getFeatured(3);
 $siteStats = $statisticModel->getAllStats();
 
 // Get hero slider images from gallery
-$heroImages = $galleryModel->getFeatured(5); // Get up to 5 featured images for hero slider
+$heroImages = $galleryModel->getCarouselImages(5); // Get carousel images ordered by carousel_order
 ?>
 
 <!-- Modern Hero Section -->

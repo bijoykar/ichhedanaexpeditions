@@ -23,6 +23,13 @@ class Gallery extends Model {
     }
     
     /**
+     * Get carousel images for home page banner
+     */
+    public function getCarouselImages($limit = 5) {
+        return $this->where(['status' => 'published', 'show_in_carousel' => 1], 'carousel_order ASC', $limit);
+    }
+    
+    /**
      * Get images by category
      */
     public function getByCategory($category, $limit = null) {
