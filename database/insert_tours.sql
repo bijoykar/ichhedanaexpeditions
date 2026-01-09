@@ -1,0 +1,88 @@
+-- Insert Tour Data for Ichhedana Expeditions
+USE ichhedana_expeditions;
+
+-- Meghalaya Tour (3 Nights / 4 Days)
+INSERT INTO tours (
+    title, 
+    slug, 
+    short_description, 
+    full_description, 
+    itinerary, 
+    duration_days, 
+    duration_nights, 
+    start_date, 
+    end_date, 
+    price, 
+    max_participants, 
+    difficulty_level, 
+    included_services, 
+    excluded_services, 
+    accommodation_details, 
+    photography_highlights, 
+    status, 
+    featured, 
+    display_order
+) VALUES (
+    'Meghalaya - 3 Nights - 4 Days',
+    'meghalaya-3-nights-4-days',
+    'Experience the Scotland of the East with stunning landscapes, living root bridges, and cascading waterfalls in this immersive photography expedition.',
+    'Discover Meghalaya''s enchanting beauty through your lens. This carefully curated 4-day photography tour takes you through misty hills, crystal-clear rivers, and the iconic living root bridges. Capture the essence of Cherrapunji, one of the wettest places on Earth, and witness the spectacular Nohkalikai Falls. Perfect for landscape and nature photography enthusiasts.',
+    'Day 1: Arrival in Guwahati - Drive to Shillong (3-4 hours). Check-in at hotel. Evening visit to Ward''s Lake and Police Bazaar. Sunset photography at Shillong Peak.\n\nDay 2: Shillong to Cherrapunji. Visit Elephant Falls, Shillong View Point. Drive to Cherrapunji. Visit Nohkalikai Falls (India''s tallest plunge waterfall), Seven Sisters Falls, and Mawsmai Cave. Photography session during golden hour.\n\nDay 3: Full day at Living Root Bridges. Trek to Double Decker Living Root Bridge (3000+ steps). Capture the unique bioengineering marvel. Visit nearby waterfalls and natural pools. Return trek and evening at leisure.\n\nDay 4: Morning visit to Dawki River (crystal clear waters). Photography at Umngot River. Drive back to Guwahati. Departure.',
+    4,
+    3,
+    '2026-03-15',
+    '2026-03-18',
+    24999.00,
+    12,
+    'moderate',
+    'Accommodation (3 nights in comfortable hotels/resorts), All meals (breakfast, lunch, dinner), Transportation in private vehicle, Professional photography guide, All entry fees and permits, Mineral water during travel',
+    'Personal expenses, Camera equipment and accessories, Insurance, Any meals not mentioned, Tips and gratuities, Anything not mentioned in inclusions',
+    '3 nights accommodation in well-appointed hotels/resorts with modern amenities. Rooms with attached bathrooms, hot water, and WiFi. Properties selected for comfort and proximity to photography locations.',
+    'Living Root Bridges (unique bioengineering), Nohkalikai Falls (India''s tallest plunge waterfall), Seven Sisters Falls, Dawki River (crystal clear waters), Mawsmai Cave, Misty landscapes, Cascading waterfalls, Lush green valleys, Traditional Khasi villages',
+    'published',
+    1,
+    1
+);
+
+-- Neora Valley National Park Tour (4 Days / 5 Nights)
+INSERT INTO tours (
+    title, 
+    slug, 
+    short_description, 
+    full_description, 
+    itinerary, 
+    duration_days, 
+    duration_nights, 
+    start_date, 
+    end_date, 
+    price, 
+    max_participants, 
+    difficulty_level, 
+    included_services, 
+    excluded_services, 
+    accommodation_details, 
+    photography_highlights, 
+    status, 
+    featured, 
+    display_order
+) VALUES (
+    'Neora Valley National Park - 4 Days - 5 Nights',
+    'neora-valley-national-park-4-days-5-nights',
+    'Explore the pristine biodiversity hotspot of Neora Valley, home to red pandas, exotic birds, and untouched Eastern Himalayan forests.',
+    'Neora Valley National Park is one of the richest biological zones in Eastern India. This 5-day expedition offers unparalleled opportunities to photograph rare wildlife including red pandas, Himalayan black bears, clouded leopards, and over 265 bird species. Trek through dense virgin forests, capture misty mountain vistas, and experience the tranquility of the Eastern Himalayas.',
+    'Day 1: Arrival at Bagdogra/NJP. Drive to Lava (5-6 hours). Check-in at forest lodge. Evening birding session and acclimatization walk. Night stay at Lava.\n\nDay 2: Early morning birding at Lava forest. Visit Neora Valley viewpoint. Photography session capturing Himalayan landscapes. Afternoon trek to nearby waterfalls. Sunset photography. Night stay at Lava.\n\nDay 3: Full day wildlife safari in Neora Valley National Park. Morning and afternoon safari sessions with professional naturalist. Focus on red panda habitat areas, bird photography, and landscape shots. Packed lunch in the forest. Night stay at Lava.\n\nDay 4: Morning trek to Changey Falls. Photography session at the falls and surrounding areas. Visit Lava Monastery and local village. Cultural photography opportunities. Evening at leisure. Night stay at Lava.\n\nDay 5: Early morning final birding session. Breakfast and check-out. Drive to Bagdogra/NJP. Departure with memories of pristine wilderness.',
+    5,
+    4,
+    '2026-04-10',
+    '2026-04-14',
+    29999.00,
+    10,
+    'moderate',
+    'Accommodation (4 nights in forest lodge/eco-resort), All meals (breakfast, lunch, dinner), Transportation in private vehicle, Professional wildlife photographer/naturalist guide, All national park entry fees and permits, Safari charges (2 safaris), Mineral water during travel',
+    'Personal expenses, Camera equipment and lenses, Travel insurance, Alcoholic beverages, Tips for guide and driver, Any expenses due to unforeseen circumstances, Anything not mentioned in inclusions',
+    '4 nights accommodation in comfortable forest lodge or eco-resort near Lava. Basic but clean rooms with attached bathrooms. Hot water availability. Proximity to forest for early morning wildlife photography.',
+    'Red Panda (rare and endangered), Himalayan Black Bear, Clouded Leopard, 265+ bird species including Satyr Tragopan, Blood Pheasant, Rufous-necked Hornbill, Virgin Eastern Himalayan forests, Misty mountain landscapes, Changey Falls, Alpine meadows, Rhododendron forests, Traditional Lepcha culture',
+    'published',
+    1,
+    2
+);

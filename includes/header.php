@@ -1,0 +1,466 @@
+<?php
+require_once __DIR__ . '/../config/config.php';
+require_once __DIR__ . '/../config/database.php';
+require_once __DIR__ . '/functions.php';
+
+// Autoload classes
+spl_autoload_register(function ($class) {
+    $file = __DIR__ . '/classes/' . $class . '.php';
+    if (file_exists($file)) {
+        require_once $file;
+    }
+});
+
+// Check maintenance mode
+if (MAINTENANCE_MODE && !isLoggedIn()) {
+    die('<h1>Maintenance Mode</h1><p>' . MAINTENANCE_MESSAGE . '</p>');
+}
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="<?php echo $meta_description ?? DEFAULT_META_DESCRIPTION; ?>">
+    <meta name="keywords" content="<?php echo $meta_keywords ?? DEFAULT_META_KEYWORDS; ?>">
+    <meta name="author" content="<?php echo SITE_NAME; ?>">
+    
+    <title><?php echo isset($page_title) ? $page_title . ' - ' . SITE_NAME : SITE_NAME . ' - ' . SITE_TAGLINE; ?></title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="<?php echo ASSETS_URL; ?>/images/favicon.png">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="<?php echo ASSETS_URL; ?>/css/style.css">
+    <link rel="stylesheet" href="<?php echo ASSETS_URL; ?>/css/responsive.css">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    
+    <?php if (isset($extra_css)): ?>
+        <?php echo $extra_css; ?>
+    <?php endif; ?>
+</head>
+<body>
+    <!-- Modern Header -->
+    <header class="modern-site-header">
+        <div class="modern-top-bar">
+            <div class="container">
+                <div class="modern-top-bar-content">
+                    <div class="modern-contact-info">
+                        <a href="tel:<?php echo SITE_PHONE; ?>" class="contact-link">
+                            <i class="fas fa-phone-alt"></i> 
+                            <span><?php echo SITE_PHONE; ?></span>
+                        </a>
+                        <a href="mailto:<?php echo SITE_EMAIL; ?>" class="contact-link">
+                            <i class="fas fa-envelope"></i> 
+                            <span><?php echo SITE_EMAIL; ?></span>
+                        </a>
+                    </div>
+                    <div class="modern-social-links">
+                        <a href="<?php echo FACEBOOK_URL; ?>" target="_blank" title="Facebook" class="social-icon facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="<?php echo FACEBOOK_GROUP_URL; ?>" target="_blank" title="Facebook Group" class="social-icon group">
+                            <i class="fas fa-users"></i>
+                        </a>
+                        <a href="<?php echo INSTAGRAM_URL; ?>" target="_blank" title="Instagram" class="social-icon instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <nav class="modern-main-nav">
+            <div class="container">
+                <div class="modern-nav-wrapper">
+                    <div class="modern-logo">
+                        <a href="<?php echo SITE_URL; ?>">
+                            <img src="https://ichhedanaexpeditions.com/usercontent/1776478732.png" alt="<?php echo SITE_NAME; ?>">
+                        </a>
+                    </div>
+                    
+                    <button class="modern-mobile-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    
+                    <ul class="modern-nav-menu" id="navMenu">
+                        <li><a href="<?php echo SITE_URL; ?>" class="<?php echo (basename($_SERVER['PHP_SELF']) == 'index.php') ? 'active' : ''; ?>">
+                            <i class="fas fa-home"></i><span>Home</span>
+                        </a></li>
+                        <li><a href="<?php echo SITE_URL; ?>/tours.php" class="<?php echo (basename($_SERVER['PHP_SELF']) == 'tours.php') ? 'active' : ''; ?>">
+                            <i class="fas fa-map-marked-alt"></i><span>Tours</span>
+                        </a></li>
+                        <li><a href="<?php echo SITE_URL; ?>/destinations.php" class="<?php echo (basename($_SERVER['PHP_SELF']) == 'destinations.php') ? 'active' : ''; ?>">
+                            <i class="fas fa-mountain"></i><span>Destinations</span>
+                        </a></li>
+                        <li><a href="<?php echo SITE_URL; ?>/gallery.php" class="<?php echo (basename($_SERVER['PHP_SELF']) == 'gallery.php') ? 'active' : ''; ?>">
+                            <i class="fas fa-images"></i><span>Gallery</span>
+                        </a></li>
+                        <li><a href="<?php echo SITE_URL; ?>/blogs.php" class="<?php echo (basename($_SERVER['PHP_SELF']) == 'blogs.php') ? 'active' : ''; ?>">
+                            <i class="fas fa-blog"></i><span>Blog</span>
+                        </a></li>
+                        <li><a href="<?php echo SITE_URL; ?>/reviews.php" class="<?php echo (basename($_SERVER['PHP_SELF']) == 'reviews.php') ? 'active' : ''; ?>">
+                            <i class="fas fa-star"></i><span>Reviews</span>
+                        </a></li>
+                        <li><a href="<?php echo SITE_URL; ?>/about.php" class="<?php echo (basename($_SERVER['PHP_SELF']) == 'about.php') ? 'active' : ''; ?>">
+                            <i class="fas fa-info-circle"></i><span>About</span>
+                        </a></li>
+                        <li><a href="<?php echo SITE_URL; ?>/contact.php" class="<?php echo (basename($_SERVER['PHP_SELF']) == 'contact.php' || basename($_SERVER['PHP_SELF']) == 'contact-form.php') ? 'active' : ''; ?>">
+                            <i class="fas fa-envelope"></i><span>Contact</span>
+                        </a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    
+    <style>
+    /* Modern Header Styles */
+    .modern-site-header {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        background: white;
+        box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+        transition: all 0.3s ease;
+    }
+    
+    .modern-site-header.scrolled {
+        box-shadow: 0 4px 30px rgba(0,0,0,0.12);
+    }
+    
+    /* Modern Top Bar */
+    .modern-top-bar {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        padding: 12px 0;
+        font-size: 13px;
+    }
+    
+    .modern-top-bar-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .modern-contact-info {
+        display: flex;
+        gap: 25px;
+        align-items: center;
+    }
+    
+    .contact-link {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: white;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        padding: 6px 12px;
+        border-radius: 6px;
+    }
+    
+    .contact-link:hover {
+        background: rgba(255,255,255,0.15);
+        transform: translateY(-2px);
+    }
+    
+    .contact-link i {
+        font-size: 14px;
+    }
+    
+    .modern-social-links {
+        display: flex;
+        gap: 12px;
+    }
+    
+    .social-icon {
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        text-decoration: none;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.15);
+        transition: all 0.3s ease;
+        font-size: 14px;
+    }
+    
+    .social-icon:hover {
+        background: white;
+        transform: translateY(-3px) scale(1.1);
+    }
+    
+    .social-icon.facebook:hover {
+        color: #1877f2;
+    }
+    
+    .social-icon.instagram:hover {
+        color: #E4405F;
+    }
+    
+    .social-icon.group:hover {
+        color: #667eea;
+    }
+    
+    /* Modern Main Nav */
+    .modern-main-nav {
+        padding: 18px 0;
+        background: white;
+    }
+    
+    .modern-nav-wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .modern-logo a {
+        display: block;
+        transition: transform 0.3s ease;
+    }
+    
+    .modern-logo a:hover {
+        transform: scale(1.05);
+    }
+    
+    .modern-logo img {
+        height: 65px;
+        width: auto;
+        display: block;
+        filter: brightness(0) saturate(100%) invert(37%) sepia(89%) saturate(1785%) hue-rotate(233deg) brightness(95%) contrast(93%);
+        transition: filter 0.3s ease;
+    }
+    
+    .modern-logo a:hover img {
+        filter: brightness(0) saturate(100%) invert(28%) sepia(94%) saturate(2095%) hue-rotate(258deg) brightness(89%) contrast(95%);
+    }
+    
+    .modern-nav-menu {
+        display: flex;
+        gap: 5px;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+    
+    .modern-nav-menu li a {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 12px 18px;
+        color: #2d3748;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 15px;
+        border-radius: 10px;
+        transition: all 0.3s ease;
+        position: relative;
+    }
+    
+    .modern-nav-menu li a i {
+        font-size: 16px;
+        color: #667eea;
+        transition: all 0.3s ease;
+    }
+    
+    .modern-nav-menu li a:hover {
+        background: linear-gradient(135deg, rgba(102,126,234,0.1) 0%, rgba(118,75,162,0.1) 100%);
+        color: #667eea;
+        transform: translateY(-2px);
+    }
+    
+    .modern-nav-menu li a.active {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        box-shadow: 0 4px 15px rgba(102,126,234,0.3);
+    }
+    
+    .modern-nav-menu li a.active i {
+        color: white;
+    }
+    
+    .modern-mobile-toggle {
+        display: none;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 8px;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+    }
+    
+    .modern-mobile-toggle:hover {
+        background: rgba(102,126,234,0.1);
+    }
+    
+    .modern-mobile-toggle span {
+        display: block;
+        width: 28px;
+        height: 3px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        margin: 5px 0;
+        border-radius: 2px;
+        transition: all 0.3s ease;
+    }
+    
+    .modern-mobile-toggle.active span:nth-child(1) {
+        transform: rotate(45deg) translate(8px, 8px);
+    }
+    
+    .modern-mobile-toggle.active span:nth-child(2) {
+        opacity: 0;
+    }
+    
+    .modern-mobile-toggle.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(8px, -8px);
+    }
+    
+    /* Responsive */
+    @media (max-width: 1200px) {
+        .modern-nav-menu li a {
+            padding: 10px 14px;
+            font-size: 14px;
+        }
+        
+        .modern-nav-menu li a i {
+            font-size: 14px;
+        }
+    }
+    
+    @media (max-width: 992px) {
+        .modern-top-bar {
+            padding: 10px 0;
+        }
+        
+        .modern-contact-info span {
+            display: none;
+        }
+        
+        .contact-link {
+            padding: 6px;
+        }
+        
+        .modern-mobile-toggle {
+            display: block;
+        }
+        
+        .modern-nav-menu {
+            position: fixed;
+            top: 120px;
+            left: -100%;
+            width: 280px;
+            height: calc(100vh - 120px);
+            background: white;
+            flex-direction: column;
+            padding: 20px;
+            box-shadow: 2px 0 20px rgba(0,0,0,0.1);
+            transition: left 0.4s ease;
+            overflow-y: auto;
+            gap: 8px;
+        }
+        
+        .modern-nav-menu.active {
+            left: 0;
+        }
+        
+        .modern-nav-menu li {
+            width: 100%;
+        }
+        
+        .modern-nav-menu li a {
+            width: 100%;
+            justify-content: flex-start;
+            padding: 14px 16px;
+        }
+    }
+    
+    @media (max-width: 576px) {
+        .modern-contact-info {
+            gap: 10px;
+        }
+        
+        .modern-social-links {
+            gap: 8px;
+        }
+        
+        .social-icon {
+            width: 28px;
+            height: 28px;
+            font-size: 12px;
+        }
+        
+        .modern-logo img {
+            height: 50px;
+        }
+    }
+    </style>
+    
+    <script>
+    // Mobile menu toggle
+    const mobileToggle = document.getElementById('mobileMenuToggle');
+    const navMenu = document.getElementById('navMenu');
+    
+    if (mobileToggle && navMenu) {
+        mobileToggle.addEventListener('click', function() {
+            this.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!event.target.closest('.modern-nav-wrapper')) {
+                mobileToggle.classList.remove('active');
+                navMenu.classList.remove('active');
+            }
+        });
+        
+        // Close menu when clicking on a link
+        navMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileToggle.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+    }
+    
+    // Add scrolled class to header
+    let lastScroll = 0;
+    const header = document.querySelector('.modern-site-header');
+    
+    window.addEventListener('scroll', () => {
+        const currentScroll = window.pageYOffset;
+        
+        if (currentScroll > 50) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+        
+        lastScroll = currentScroll;
+    });
+    </script>
+    
+    <?php
+    // Display flash messages
+    $flash = getFlashMessage();
+    if ($flash):
+    ?>
+    <div class="flash-message <?php echo $flash['type']; ?>">
+        <div class="container">
+            <p><?php echo $flash['message']; ?></p>
+            <button class="close-flash">&times;</button>
+        </div>
+    </div>
+    <?php endif; ?>
+    
+    <!-- Main Content -->
+    <main class="main-content">

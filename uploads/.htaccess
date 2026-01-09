@@ -1,0 +1,5 @@
+# Allow access to files but prevent PHP execution
+<FilesMatch "\.php$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
