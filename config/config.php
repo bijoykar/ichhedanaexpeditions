@@ -6,6 +6,13 @@
  * @version 1.0
  */
 
+// Start Session first - before any output
+if (session_status() === PHP_SESSION_NONE) {
+    define('SESSION_NAME', 'ichhedana_session');
+    session_name(SESSION_NAME);
+    session_start();
+}
+
 // Error Reporting (Set to 0 in production)
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
@@ -43,7 +50,6 @@ define('REVIEW_UPLOAD_DIR', UPLOAD_PATH . '/reviews');
 
 // Session Configuration
 define('SESSION_LIFETIME', 7200); // 2 hours
-define('SESSION_NAME', 'ichhedana_session');
 
 // Pagination
 define('ITEMS_PER_PAGE', 12);
@@ -94,16 +100,10 @@ define('MAINTENANCE_MESSAGE', 'We are currently performing scheduled maintenance
 define('CACHE_ENABLED', false);
 define('CACHE_LIFETIME', 3600); // 1 hour
 
-// Auto-load Classes
+// Autoload classes
 spl_autoload_register(function ($class) {
-    $file = ROOT_PATH . '/includes/classes/' . $class . '.php';
+    $file = __DIR__ . '/../includes/classes/' . $class . '.php';
     if (file_exists($file)) {
         require_once $file;
     }
 });
-
-// Start Session
-if (session_status() === PHP_SESSION_NONE) {
-    session_name(SESSION_NAME);
-    session_start();
-}
