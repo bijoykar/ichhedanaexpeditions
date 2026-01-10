@@ -119,17 +119,38 @@ if (MAINTENANCE_MODE && !isLoggedIn()) {
                 </div>
             </div>
         </nav>
+        <div class="mobile-menu-backdrop" id="mobileBackdrop"></div>
     </header>
     
     <style>
+    /* Prevent horizontal overflow on mobile */
+    html, body {
+        overflow-x: hidden;
+        max-width: 100%;
+        padding-top: 0;
+        margin: 0;
+    }
+    
+    /* Add padding to prevent content from hiding behind fixed header */
+    body > *:first-child:not(.modern-site-header) {
+        padding-top: 140px;
+    }
+    
+    * {
+        box-sizing: border-box;
+    }
+    
     /* Modern Header Styles */
     .modern-site-header {
-        position: sticky;
+        position: fixed;
         top: 0;
+        left: 0;
+        right: 0;
         z-index: 1000;
         background: white;
         box-shadow: 0 2px 20px rgba(0,0,0,0.08);
         transition: all 0.3s ease;
+        width: 100%;
     }
     
     .modern-site-header.scrolled {
@@ -337,49 +358,88 @@ if (MAINTENANCE_MODE && !isLoggedIn()) {
     }
     
     @media (max-width: 992px) {
-        .modern-top-bar {
-            padding: 10px 0;
+        /* Prevent horizontal overflow */
+        .container {
+            max-width: 100%;
+            padding-left: 15px;
+            padding-right: 15px;
         }
         
-        .modern-contact-info span {
-            display: none;
-        }
-        
-        .contact-link {
-            padding: 6px;
+        .modern-top-bar-content,
+        .modern-nav-wrapper {
+            max-width: 100%;
+            overflow: hidden;
         }
         
         .modern-mobile-toggle {
             display: block;
+            position: relative;
+            z-index: 10003;
         }
         
         .modern-nav-menu {
             position: fixed;
-            top: 120px;
+            top: 0;
             left: -100%;
             width: 280px;
-            height: calc(100vh - 120px);
-            background: white;
+            height: 100vh;
+            background: #ffffff;
             flex-direction: column;
-            padding: 20px;
-            box-shadow: 2px 0 20px rgba(0,0,0,0.1);
-            transition: left 0.4s ease;
+            padding: 80px 20px 20px 20px;
+            box-shadow: 3px 0 15px rgba(0,0,0,0.2);
+            transition: left 0.3s ease-in-out;
             overflow-y: auto;
-            gap: 8px;
+            z-index: 10002;
         }
         
-        .modern-nav-menu.active {
+        .modern-nav-menu.menu-open {
             left: 0;
         }
         
         .modern-nav-menu li {
             width: 100%;
+            margin: 5px 0;
         }
         
         .modern-nav-menu li a {
             width: 100%;
-            justify-content: flex-start;
-            padding: 14px 16px;
+            padding: 15px 20px;
+            border-radius: 8px;
+            background: #f8f9fa;
+            color: #333;
+            font-size: 16px;
+        }
+        
+        .modern-nav-menu li a:hover {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .modern-nav-menu li a.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .modern-nav-menu li a i {
+            color: inherit;
+        }
+        
+        .mobile-menu-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s;
+            z-index: 10001;
+        }
+        
+        .mobile-menu-backdrop.backdrop-open {
+            opacity: 1;
+            visibility: visible;
         }
     }
     
@@ -405,32 +465,60 @@ if (MAINTENANCE_MODE && !isLoggedIn()) {
     </style>
     
     <script>
-    // Mobile menu toggle
-    const mobileToggle = document.getElementById('mobileMenuToggle');
-    const navMenu = document.getElementById('navMenu');
-    
-    if (mobileToggle && navMenu) {
-        mobileToggle.addEventListener('click', function() {
-            this.classList.toggle('active');
-            navMenu.classList.toggle('active');
-        });
+    (function() {
+        'use strict';
         
-        // Close menu when clicking outside
-        document.addEventListener('click', function(event) {
-            if (!event.target.closest('.modern-nav-wrapper')) {
-                mobileToggle.classList.remove('active');
-                navMenu.classList.remove('active');
+        // Wait for DOM
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initMobileMenu);
+        } else {
+            initMobileMenu();
+        }
+        
+        function initMobileMenu() {
+            const menuBtn = document.getElementById('mobileMenuToggle');
+            const menu = document.getElementById('navMenu');
+            const backdrop = document.getElementById('mobileBackdrop');
+            
+            if (!menuBtn || !menu || !backdrop) {
+                console.warn('Mobile menu elements not found');
+                return;
             }
-        });
-        
-        // Close menu when clicking on a link
-        navMenu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileToggle.classList.remove('active');
-                navMenu.classList.remove('active');
+            
+            // Toggle menu
+            menuBtn.onclick = function() {
+                const isOpen = menu.classList.contains('menu-open');
+                
+                if (isOpen) {
+                    closeMenu();
+                } else {
+                    openMenu();
+                }
+            };
+            
+            // Close on backdrop click
+            backdrop.onclick = closeMenu;
+            
+            // Close on menu link click
+            menu.querySelectorAll('a').forEach(function(link) {
+                link.onclick = closeMenu;
             });
-        });
-    }
+            
+            function openMenu() {
+                menu.classList.add('menu-open');
+                backdrop.classList.add('backdrop-open');
+                menuBtn.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+            
+            function closeMenu() {
+                menu.classList.remove('menu-open');
+                backdrop.classList.remove('backdrop-open');
+                menuBtn.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+    })();
     
     // Add scrolled class to header
     let lastScroll = 0;

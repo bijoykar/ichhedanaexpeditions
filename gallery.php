@@ -8,15 +8,17 @@ $galleryModel = new Gallery();
 // Get filter parameters
 $category = isset($_GET['category']) ? sanitize($_GET['category']) : '';
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+$perPage = 12; // Items per page
 
 // Get categories for filter
 $categories = $galleryModel->getCategories();
 
-// Get images based on filter
+// Get images based on filter with pagination
 if ($category) {
-    $images = $galleryModel->getByCategory($category);
+    $result = $galleryModel->paginate($page, $perPage, ['status' => 'published', 'category' => $category], 'display_order ASC, created_at DESC');
+    $images = $result['data'];
 } else {
-    $result = $galleryModel->paginate($page, ITEMS_PER_PAGE, ['status' => 'published'], 'display_order ASC, created_at DESC');
+    $result = $galleryModel->paginate($page, $perPage, ['status' => 'published'], 'display_order ASC, created_at DESC');
     $images = $result['data'];
 }
 ?>
@@ -94,9 +96,15 @@ if ($category) {
         </div>
         
         <!-- Pagination -->
-        <?php if (!$category && isset($result)): ?>
+        <?php if (isset($result) && $result['total_pages'] > 1): ?>
         <div class="pagination-wrapper">
-            <?php echo getPaginationHTML($result['current_page'], $result['total_pages'], SITE_URL . '/gallery.php'); ?>
+            <?php 
+            $paginationUrl = SITE_URL . '/gallery.php';
+            if ($category) {
+                $paginationUrl .= '?category=' . urlencode($category);
+            }
+            echo getPaginationHTML($result['current_page'], $result['total_pages'], $paginationUrl); 
+            ?>
         </div>
         <?php endif; ?>
         
@@ -384,69 +392,117 @@ if ($category) {
     display: none;
     align-items: center;
     justify-content: center;
+    animation: fadeIn 0.3s ease;
 }
 
 .lightbox.active {
     display: flex;
 }
 
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
 .lightbox-content {
     max-width: 90%;
     max-height: 90%;
     position: relative;
+    animation: zoomIn 0.3s ease;
+}
+
+@keyframes zoomIn {
+    from { 
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to { 
+        transform: scale(1);
+        opacity: 1;
+    }
 }
 
 .lightbox-content img {
     max-width: 100%;
     max-height: 90vh;
     object-fit: contain;
+    border-radius: 10px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    pointer-events: none;
 }
 
 .lightbox-close {
-    position: absolute;
-    top: 20px;
-    right: 30px;
-    font-size: 40px;
-    color: var(--white);
+    position: fixed;
+    top: 30px;
+    right: 40px;
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+    color: white;
     cursor: pointer;
     z-index: 10001;
+    background: rgba(102, 126, 234, 0.9);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+}
+
+.lightbox-close:hover {
+    background: rgba(118, 75, 162, 1);
+    transform: rotate(90deg) scale(1.1);
 }
 
 .lightbox-title {
-    position: absolute;
-    bottom: 20px;
+    position: fixed;
+    bottom: 40px;
     left: 50%;
     transform: translateX(-50%);
-    color: var(--white);
-    background: rgba(0, 0, 0, 0.7);
-    padding: 10px 20px;
-    border-radius: 5px;
-    font-size: 16px;
+    color: white;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.9) 0%, rgba(118, 75, 162, 0.9) 100%);
+    padding: 15px 30px;
+    border-radius: 30px;
+    font-size: 18px;
+    font-weight: 600;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    max-width: 80%;
+    text-align: center;
 }
 
 .lightbox-nav {
-    position: absolute;
+    position: fixed;
     top: 50%;
     transform: translateY(-50%);
-    font-size: 40px;
-    color: var(--white);
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+    color: white;
     cursor: pointer;
-    padding: 20px;
-    background: rgba(0, 0, 0, 0.5);
-    border-radius: 5px;
-    transition: var(--transition);
+    background: rgba(102, 126, 234, 0.8);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
 }
 
 .lightbox-nav:hover {
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(118, 75, 162, 1);
+    transform: translateY(-50%) scale(1.15);
 }
 
 .lightbox-prev {
-    left: 20px;
+    left: 30px;
 }
 
 .lightbox-next {
-    right: 20px;
+    right: 30px;
 }
 
 @media (max-width: 992px) {
@@ -527,13 +583,33 @@ if ($category) {
 <!-- Lightbox JavaScript -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+    // Disable right-click on all gallery images
+    const allImages = document.querySelectorAll('.gallery-item-modern img, .lightbox img');
+    allImages.forEach(img => {
+        img.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+            return false;
+        });
+        
+        // Prevent drag
+        img.addEventListener('dragstart', function(e) {
+            e.preventDefault();
+            return false;
+        });
+        
+        // Add user-select none
+        img.style.userSelect = 'none';
+        img.style.webkitUserSelect = 'none';
+        img.style.mozUserSelect = 'none';
+    });
+    
     // Create lightbox element
     const lightbox = document.createElement('div');
     lightbox.className = 'lightbox';
     lightbox.innerHTML = `
-        <span class="lightbox-close">&times;</span>
-        <span class="lightbox-nav lightbox-prev">&#8249;</span>
-        <span class="lightbox-nav lightbox-next">&#8250;</span>
+        <span class="lightbox-close"><i class="fas fa-times"></i></span>
+        <span class="lightbox-nav lightbox-prev"><i class="fas fa-chevron-left"></i></span>
+        <span class="lightbox-nav lightbox-next"><i class="fas fa-chevron-right"></i></span>
         <div class="lightbox-content">
             <img src="" alt="">
             <div class="lightbox-title"></div>
@@ -541,12 +617,22 @@ document.addEventListener('DOMContentLoaded', function() {
     `;
     document.body.appendChild(lightbox);
     
-    const galleryLinks = document.querySelectorAll('.gallery-link');
+    const galleryLinks = document.querySelectorAll('.gallery-link-modern');
     const lightboxImg = lightbox.querySelector('img');
     const lightboxTitle = lightbox.querySelector('.lightbox-title');
     const closeBtn = lightbox.querySelector('.lightbox-close');
     const prevBtn = lightbox.querySelector('.lightbox-prev');
     const nextBtn = lightbox.querySelector('.lightbox-next');
+    
+    // Disable right-click on lightbox image
+    lightboxImg.addEventListener('contextmenu', function(e) {
+        e.preventDefault();
+        return false;
+    });
+    lightboxImg.addEventListener('dragstart', function(e) {
+        e.preventDefault();
+        return false;
+    });
     
     let currentIndex = 0;
     const images = Array.from(galleryLinks);
@@ -588,8 +674,14 @@ document.addEventListener('DOMContentLoaded', function() {
         if (e.target === lightbox) closeLightbox();
     });
     
-    nextBtn.addEventListener('click', showNext);
-    prevBtn.addEventListener('click', showPrev);
+    nextBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        showNext();
+    });
+    prevBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        showPrev();
+    });
     
     // Keyboard navigation
     document.addEventListener('keydown', function(e) {

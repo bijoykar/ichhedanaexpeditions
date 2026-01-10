@@ -391,6 +391,12 @@ $heroImages = $galleryModel->getCarouselImages(5); // Get carousel images ordere
 @media (max-width: 992px) {
     .modern-hero-section {
         min-height: 550px;
+        height: 80vh;
+    }
+    
+    .hero-slide {
+        background-size: cover;
+        background-position: center;
     }
     
     .hero-title {
@@ -419,7 +425,13 @@ $heroImages = $galleryModel->getCarouselImages(5); // Get carousel images ordere
 @media (max-width: 768px) {
     .modern-hero-section {
         min-height: 500px;
-        height: auto;
+        height: 70vh;
+    }
+    
+    .hero-slide {
+        background-size: cover !important;
+        background-position: center !important;
+        background-repeat: no-repeat !important;
     }
     
     .hero-content {
