@@ -61,19 +61,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_image'])) {
     $carousel_order = (int)$_POST['carousel_order'];
     $status = sanitize($_POST['status']);
     
+    // Hero slider fields
+    $hero_title = sanitize($_POST['hero_title'] ?? '');
+    $hero_subtitle = sanitize($_POST['hero_subtitle'] ?? '');
+    $hero_button_text = sanitize($_POST['hero_button_text'] ?? '');
+    $hero_button_link = sanitize($_POST['hero_button_link'] ?? '');
+    
     try {
         $sql = "UPDATE gallery SET
                     title = ?, description = ?, category = ?, destination_id = ?,
                     tour_id = ?, photographer = ?, camera_settings = ?, location = ?,
                     taken_date = ?, display_order = ?, featured = ?, show_in_carousel = ?,
-                    carousel_order = ?, status = ?
+                    carousel_order = ?, status = ?,
+                    hero_title = ?, hero_subtitle = ?, hero_button_text = ?, hero_button_link = ?
                 WHERE id = ?";
         
         $stmt = $db->prepare($sql);
         $stmt->execute([
             $title, $description, $category, $destination_id, $tour_id,
             $photographer, $camera_settings, $location, $taken_date,
-            $display_order, $featured, $show_in_carousel, $carousel_order, $status, $imageId
+            $display_order, $featured, $show_in_carousel, $carousel_order, $status,
+            $hero_title, $hero_subtitle, $hero_button_text, $hero_button_link,
+            $imageId
         ]);
         
         $success = 'Gallery image updated successfully!';
@@ -475,6 +484,47 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_image'])) {
                         <label>Camera Settings</label>
                         <input type="text" name="camera_settings" 
                                value="<?php echo htmlspecialchars($image['camera_settings'] ?? ''); ?>">
+                    </div>
+                </div>
+                
+                <!-- Hero Slider Content (for homepage carousel) -->
+                <div class="form-card">
+                    <h2><i class="fas fa-sliders-h"></i> Hero Slider Content</h2>
+                    <p style="color: #6b7280; font-size: 14px; margin-bottom: 20px;">
+                        These fields control how this image appears when used in the homepage hero carousel. Leave empty to use default values.
+                    </p>
+                    
+                    <div class="form-group">
+                        <label>Hero Title</label>
+                        <input type="text" name="hero_title" 
+                               value="<?php echo htmlspecialchars($image['hero_title'] ?? ''); ?>"
+                               placeholder="Leave empty to use image title">
+                        <small>Custom title to display over the image in the hero slider</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Hero Subtitle</label>
+                        <textarea name="hero_subtitle" rows="3" 
+                                  placeholder="Optional subtitle or description"><?php echo htmlspecialchars($image['hero_subtitle'] ?? ''); ?></textarea>
+                        <small>Subtitle text displayed below the title</small>
+                    </div>
+                    
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Button Text</label>
+                            <input type="text" name="hero_button_text" 
+                                   value="<?php echo htmlspecialchars($image['hero_button_text'] ?? ''); ?>"
+                                   placeholder="e.g., Explore Tours">
+                            <small>Text for the call-to-action button</small>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Button Link</label>
+                            <input type="text" name="hero_button_link" 
+                                   value="<?php echo htmlspecialchars($image['hero_button_link'] ?? ''); ?>"
+                                   placeholder="e.g., /tours.php">
+                            <small>Relative URL starting with /</small>
+                        </div>
                     </div>
                 </div>
             </div>

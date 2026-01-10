@@ -12,6 +12,10 @@ function sanitize($data) {
     if (is_array($data)) {
         return array_map('sanitize', $data);
     }
+    // Handle null values for PHP 8.1+ compatibility
+    if ($data === null) {
+        return '';
+    }
     return htmlspecialchars(strip_tags(trim($data)), ENT_QUOTES, 'UTF-8');
 }
 

@@ -35,6 +35,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_image'])) {
     $carousel_order = (int)$_POST['carousel_order'];
     $status = sanitize($_POST['status']);
     
+    // Hero slider fields
+    $hero_title = sanitize($_POST['hero_title'] ?? '');
+    $hero_subtitle = sanitize($_POST['hero_subtitle'] ?? '');
+    $hero_button_text = sanitize($_POST['hero_button_text'] ?? '');
+    $hero_button_link = sanitize($_POST['hero_button_link'] ?? '');
+    
     // For now, we'll use a placeholder for image_path
     // In production, you'd handle file upload here
     $image_path = 'placeholder.jpg'; // TODO: Implement file upload
@@ -45,9 +51,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_image'])) {
                     title, description, image_path, thumbnail_path, category,
                     destination_id, tour_id, photographer, camera_settings,
                     location, taken_date, display_order, featured, show_in_carousel,
-                    carousel_order, status
+                    carousel_order, status,
+                    hero_title, hero_subtitle, hero_button_text, hero_button_link
                 ) VALUES (
-                    ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?
+                    ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?
                 )";
         
         $stmt = $db->prepare($sql);
@@ -55,7 +62,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_image'])) {
             $title, $description, $image_path, $thumbnail_path, $category,
             $destination_id, $tour_id, $photographer, $camera_settings,
             $location, $taken_date, $display_order, $featured, $show_in_carousel,
-            $carousel_order, $status
+            $carousel_order, $status,
+            $hero_title, $hero_subtitle, $hero_button_text, $hero_button_link
         ]);
         
         $success = 'Gallery image added successfully!';
@@ -459,6 +467,44 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_image'])) {
                         <input type="text" name="camera_settings" 
                                placeholder="e.g., Canon EOS 5D, f/5.6, 1/500s, ISO 400">
                         <small>Camera, aperture, shutter speed, ISO, etc.</small>
+                    </div>
+                </div>
+                
+                <!-- Hero Slider Content (for homepage carousel) -->
+                <div class="form-card">
+                    <h2><i class="fas fa-sliders-h"></i> Hero Slider Content</h2>
+                    <p style="color: #6b7280; font-size: 14px; margin-bottom: 20px;">
+                        These fields control how this image appears when used in the homepage hero carousel. Leave empty to use default values.
+                    </p>
+                    
+                    <div class="form-group">
+                        <label>Hero Title</label>
+                        <input type="text" name="hero_title" 
+                               placeholder="Leave empty to use image title">
+                        <small>Custom title to display over the image in the hero slider</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Hero Subtitle</label>
+                        <textarea name="hero_subtitle" rows="3" 
+                                  placeholder="Optional subtitle or description"></textarea>
+                        <small>Subtitle text displayed below the title</small>
+                    </div>
+                    
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Button Text</label>
+                            <input type="text" name="hero_button_text" 
+                                   placeholder="e.g., Explore Tours">
+                            <small>Text for the call-to-action button</small>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Button Link</label>
+                            <input type="text" name="hero_button_link" 
+                                   placeholder="e.g., /tours.php">
+                            <small>Relative URL starting with /</small>
+                        </div>
                     </div>
                 </div>
             </div>
