@@ -50,8 +50,42 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-// Fetch all destinations
-$destinations = $destinationModel->all();
+// Get filter parameters
+$statusFilter = isset($_GET['status']) ? sanitize($_GET['status']) : '';
+$countryFilter = isset($_GET['country']) ? sanitize($_GET['country']) : '';
+$searchQuery = isset($_GET['search']) ? sanitize($_GET['search']) : '';
+
+// Build query with filters
+$sql = "SELECT * FROM destinations WHERE 1=1";
+$params = [];
+
+if ($statusFilter) {
+    $sql .= " AND status = ?";
+    $params[] = $statusFilter;
+}
+
+if ($countryFilter) {
+    $sql .= " AND country = ?";
+    $params[] = $countryFilter;
+}
+
+if ($searchQuery) {
+    $sql .= " AND (name LIKE ? OR region LIKE ? OR description LIKE ?)";
+    $searchTerm = "%$searchQuery%";
+    $params[] = $searchTerm;
+    $params[] = $searchTerm;
+    $params[] = $searchTerm;
+}
+
+$sql .= " ORDER BY display_order ASC, name ASC";
+
+$stmt = $db->prepare($sql);
+$stmt->execute($params);
+$destinations = $stmt->fetchAll();
+
+// Get unique countries for filter
+$countriesStmt = $db->query("SELECT DISTINCT country FROM destinations ORDER BY country");
+$countries = $countriesStmt->fetchAll(PDO::FETCH_COLUMN);
 
 // Get tour counts for each destination
 $tourCounts = [];
@@ -436,6 +470,57 @@ while ($row = $stmt->fetch()) {
             </div>
             <div class="stat-card-label">Featured</div>
         </div>
+    </div>
+    
+    <!-- Filters -->
+    <div class="filters-section" style="background: white; padding: 20px; border-radius: 12px; margin-bottom: 25px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+        <form method="GET" action="" style="display: flex; gap: 15px; align-items: end; flex-wrap: wrap;">
+            <div style="flex: 1; min-width: 200px;">
+                <label style="display: block; font-size: 14px; font-weight: 600; color: #374151; margin-bottom: 8px;">
+                    <i class="fas fa-search"></i> Search
+                </label>
+                <input type="text" name="search" placeholder="Search by name, region..." 
+                       value="<?php echo htmlspecialchars($searchQuery); ?>"
+                       style="width: 100%; padding: 10px 12px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 14px;">
+            </div>
+            
+            <div style="flex: 0 0 180px;">
+                <label style="display: block; font-size: 14px; font-weight: 600; color: #374151; margin-bottom: 8px;">
+                    <i class="fas fa-flag"></i> Country
+                </label>
+                <select name="country" style="width: 100%; padding: 10px 12px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 14px;">
+                    <option value="">All Countries</option>
+                    <?php foreach ($countries as $country): ?>
+                    <option value="<?php echo htmlspecialchars($country); ?>" 
+                            <?php echo $countryFilter === $country ? 'selected' : ''; ?>>
+                        <?php echo htmlspecialchars($country); ?>
+                    </option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+            
+            <div style="flex: 0 0 150px;">
+                <label style="display: block; font-size: 14px; font-weight: 600; color: #374151; margin-bottom: 8px;">
+                    <i class="fas fa-toggle-on"></i> Status
+                </label>
+                <select name="status" style="width: 100%; padding: 10px 12px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 14px;">
+                    <option value="">All Status</option>
+                    <option value="published" <?php echo $statusFilter === 'published' ? 'selected' : ''; ?>>Published</option>
+                    <option value="draft" <?php echo $statusFilter === 'draft' ? 'selected' : ''; ?>>Draft</option>
+                </select>
+            </div>
+            
+            <div style="display: flex; gap: 10px;">
+                <button type="submit" class="btn btn-primary" style="padding: 10px 20px;">
+                    <i class="fas fa-filter"></i> Filter
+                </button>
+                <?php if ($statusFilter || $countryFilter || $searchQuery): ?>
+                <a href="destinations.php" class="btn btn-secondary" style="padding: 10px 20px;">
+                    <i class="fas fa-times"></i> Clear
+                </a>
+                <?php endif; ?>
+            </div>
+        </form>
     </div>
     
     <?php if (!empty($destinations)): ?>

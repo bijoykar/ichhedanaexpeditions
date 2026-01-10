@@ -4,8 +4,76 @@ $meta_description = 'Explore our top wildlife and nature photography destination
 require_once __DIR__ . '/includes/header.php';
 
 $destinationModel = new Destination();
+
+// Get filter parameters
+$countryFilter = isset($_GET['country']) ? sanitize($_GET['country']) : '';
+$searchQuery = isset($_GET['search']) ? sanitize($_GET['search']) : '';
+
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-$result = $destinationModel->paginate($page, 12, ['status' => 'published'], 'display_order ASC, name ASC');
+
+// Build where conditions
+$where = ['status' => 'published'];
+$extraConditions = [];
+$params = [];
+
+if ($countryFilter) {
+    $extraConditions[] = "country = ?";
+    $params[] = $countryFilter;
+}
+
+if ($searchQuery) {
+    $extraConditions[] = "(name LIKE ? OR region LIKE ? OR description LIKE ?)";
+    $searchTerm = "%$searchQuery%";
+    $params[] = $searchTerm;
+    $params[] = $searchTerm;
+    $params[] = $searchTerm;
+}
+
+// Get destinations with filters
+$db = Database::getInstance()->getConnection();
+$sql = "SELECT * FROM destinations WHERE status = 'published'";
+
+if ($countryFilter) {
+    $sql .= " AND country = ?";
+}
+if ($searchQuery) {
+    $sql .= " AND (name LIKE ? OR region LIKE ? OR description LIKE ?)";
+}
+
+$sql .= " ORDER BY display_order ASC, name ASC";
+
+$stmt = $db->prepare($sql);
+$executeParams = [];
+if ($countryFilter) {
+    $executeParams[] = $countryFilter;
+}
+if ($searchQuery) {
+    $executeParams[] = "%$searchQuery%";
+    $executeParams[] = "%$searchQuery%";
+    $executeParams[] = "%$searchQuery%";
+}
+
+$stmt->execute($executeParams);
+$allDestinations = $stmt->fetchAll();
+
+// Manual pagination
+$perPage = 12;
+$totalItems = count($allDestinations);
+$totalPages = ceil($totalItems / $perPage);
+$page = max(1, min($page, $totalPages ?: 1));
+$offset = ($page - 1) * $perPage;
+$destinations = array_slice($allDestinations, $offset, $perPage);
+
+$result = [
+    'data' => $destinations,
+    'total' => $totalItems,
+    'current_page' => $page,
+    'total_pages' => $totalPages
+];
+
+// Get unique countries for filter
+$countriesStmt = $db->query("SELECT DISTINCT country FROM destinations WHERE status = 'published' ORDER BY country");
+$countries = $countriesStmt->fetchAll(PDO::FETCH_COLUMN);
 ?>
 
 <style>
@@ -375,6 +443,60 @@ $result = $destinationModel->paginate($page, 12, ['status' => 'published'], 'dis
 <!-- Modern Destinations Section -->
 <section class="modern-destinations-section">
     <div class="container">
+        <!-- Filters -->
+        <div class="filters-section" style="background: white; padding: 30px; border-radius: 20px; margin-bottom: 50px; box-shadow: 0 5px 25px rgba(0,0,0,0.08);">
+            <form method="GET" action="" style="display: flex; gap: 20px; align-items: end; flex-wrap: wrap;">
+                <div style="flex: 1; min-width: 250px;">
+                    <label style="display: block; font-size: 14px; font-weight: 600; color: #374151; margin-bottom: 10px;">
+                        <i class="fas fa-search"></i> Search Destinations
+                    </label>
+                    <input type="text" name="search" placeholder="Search by name or region..." 
+                           value="<?php echo htmlspecialchars($searchQuery); ?>"
+                           style="width: 100%; padding: 12px 16px; border: 2px solid #e5e7eb; border-radius: 12px; font-size: 15px; transition: all 0.3s ease;">
+                </div>
+                
+                <div style="flex: 0 0 200px;">
+                    <label style="display: block; font-size: 14px; font-weight: 600; color: #374151; margin-bottom: 10px;">
+                        <i class="fas fa-flag"></i> Country
+                    </label>
+                    <select name="country" style="width: 100%; padding: 12px 16px; border: 2px solid #e5e7eb; border-radius: 12px; font-size: 15px; background: white; transition: all 0.3s ease;">
+                        <option value="">All Countries</option>
+                        <?php foreach ($countries as $country): ?>
+                        <option value="<?php echo htmlspecialchars($country); ?>" 
+                                <?php echo $countryFilter === $country ? 'selected' : ''; ?>>
+                            <?php echo htmlspecialchars($country); ?>
+                        </option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+                
+                <div style="display: flex; gap: 12px;">
+                    <button type="submit" class="btn" style="padding: 12px 30px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; border-radius: 12px; font-weight: 600; cursor: pointer; transition: all 0.3s ease;">
+                        <i class="fas fa-filter"></i> Apply Filter
+                    </button>
+                    <?php if ($countryFilter || $searchQuery): ?>
+                    <a href="<?php echo SITE_URL; ?>/destinations" class="btn" style="padding: 12px 30px; background: #6b7280; color: white; border: none; border-radius: 12px; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 8px;">
+                        <i class="fas fa-times"></i> Clear
+                    </a>
+                    <?php endif; ?>
+                </div>
+            </form>
+            
+            <?php if ($countryFilter || $searchQuery): ?>
+            <div style="margin-top: 20px; padding-top: 20px; border-top: 2px solid #f3f4f6;">
+                <p style="color: #6b7280; margin: 0;">
+                    <i class="fas fa-info-circle"></i> Showing <?php echo count($result['data']); ?> of <?php echo $result['total']; ?> destinations
+                    <?php if ($searchQuery): ?>
+                        matching "<strong><?php echo htmlspecialchars($searchQuery); ?></strong>"
+                    <?php endif; ?>
+                    <?php if ($countryFilter): ?>
+                        in <strong><?php echo htmlspecialchars($countryFilter); ?></strong>
+                    <?php endif; ?>
+                </p>
+            </div>
+            <?php endif; ?>
+        </div>
+        
         <?php if (!empty($result['data'])): ?>
             <div class="modern-destinations-grid">
                 <?php foreach ($result['data'] as $destination): ?>
@@ -430,10 +552,16 @@ $result = $destinationModel->paginate($page, 12, ['status' => 'published'], 'dis
             </div>
             
             <!-- Pagination -->
-            <?php if ($result['total_pages'] > 1): ?>
+            <?php if ($result['total_pages'] > 1): 
+                // Build query string for pagination
+                $queryParams = [];
+                if ($countryFilter) $queryParams[] = 'country=' . urlencode($countryFilter);
+                if ($searchQuery) $queryParams[] = 'search=' . urlencode($searchQuery);
+                $queryString = !empty($queryParams) ? '&' . implode('&', $queryParams) : '';
+            ?>
                 <div class="modern-pagination">
                     <?php if ($page > 1): ?>
-                        <a href="<?php echo SITE_URL; ?>/destinations.php?page=<?php echo ($page - 1); ?>">
+                        <a href="<?php echo SITE_URL; ?>/destinations?page=<?php echo ($page - 1) . $queryString; ?>">
                             <i class="fas fa-chevron-left"></i>
                         </a>
                     <?php endif; ?>
@@ -442,12 +570,12 @@ $result = $destinationModel->paginate($page, 12, ['status' => 'published'], 'dis
                         <?php if ($i == $page): ?>
                             <span class="active"><?php echo $i; ?></span>
                         <?php else: ?>
-                            <a href="<?php echo SITE_URL; ?>/destinations.php?page=<?php echo $i; ?>"><?php echo $i; ?></a>
+                            <a href="<?php echo SITE_URL; ?>/destinations?page=<?php echo $i . $queryString; ?>"><?php echo $i; ?></a>
                         <?php endif; ?>
                     <?php endfor; ?>
                     
                     <?php if ($page < $result['total_pages']): ?>
-                        <a href="<?php echo SITE_URL; ?>/destinations.php?page=<?php echo ($page + 1); ?>">
+                        <a href="<?php echo SITE_URL; ?>/destinations?page=<?php echo ($page + 1) . $queryString; ?>">
                             <i class="fas fa-chevron-right"></i>
                         </a>
                     <?php endif; ?>
