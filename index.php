@@ -849,8 +849,28 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div class="review-card">
                     <div class="review-header">
                         <div class="reviewer-photo">
-                            <img src="<?php echo $review['customer_photo'] ? UPLOAD_URL . '/reviews/' . $review['customer_photo'] : ASSETS_URL . '/images/default-avatar.jpg'; ?>" 
-                                 alt="<?php echo htmlspecialchars($review['customer_name']); ?>">
+                            <?php if ($review['customer_photo']): ?>
+                                <img src="<?php echo UPLOAD_URL . '/reviews/' . $review['customer_photo']; ?>" 
+                                     alt="<?php echo htmlspecialchars($review['customer_name']); ?>">
+                            <?php else: 
+                                // Generate avatar from initials
+                                $nameParts = explode(' ', $review['customer_name']);
+                                $initials = '';
+                                foreach ($nameParts as $part) {
+                                    if (!empty($part)) {
+                                        $initials .= strtoupper($part[0]);
+                                        if (strlen($initials) >= 2) break;
+                                    }
+                                }
+                                // Generate color based on name
+                                $colors = ['#667eea', '#764ba2', '#f093fb', '#4facfe', '#43e97b', '#fa709a', '#30cfd0', '#a8edea'];
+                                $colorIndex = ord($initials[0]) % count($colors);
+                                $bgColor = $colors[$colorIndex];
+                            ?>
+                                <div class="reviewer-avatar" style="background: <?php echo $bgColor; ?>;">
+                                    <?php echo $initials; ?>
+                                </div>
+                            <?php endif; ?>
                         </div>
                         <div class="reviewer-info">
                             <h4><?php echo htmlspecialchars($review['customer_name']); ?></h4>
