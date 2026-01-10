@@ -682,8 +682,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 <?php foreach ($upcomingTours as $tour): ?>
                 <div class="tour-card">
                     <div class="tour-image">
-                        <img src="<?php echo $tour['featured_image'] ? UPLOAD_URL . '/tours/' . $tour['featured_image'] : ASSETS_URL . '/images/placeholder.jpg'; ?>" 
+                        <?php if ($tour['featured_image']): ?>
+                        <img src="<?php echo UPLOAD_URL . '/tours/' . $tour['featured_image']; ?>" 
                              alt="<?php echo htmlspecialchars($tour['title']); ?>">
+                        <?php else: ?>
+                        <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 48px;">
+                            <i class="fas fa-camera"></i>
+                        </div>
+                        <?php endif; ?>
                         <?php if ($tour['featured']): ?>
                         <span class="badge badge-featured">Featured</span>
                         <?php endif; ?>
