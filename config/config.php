@@ -21,7 +21,7 @@ ini_set('display_errors', 1);
 define('DB_HOST', 'localhost');
 define('DB_NAME', 'ichhedana_expeditions');
 define('DB_USER', 'ichhedana_expeditions');
-define('DB_PASS', 'ichhedana_expeditions');
+define('DB_PASS', 'ichhedana_expeditions_pass');
 define('DB_CHARSET', 'utf8mb4');
 
 // Site Configuration
