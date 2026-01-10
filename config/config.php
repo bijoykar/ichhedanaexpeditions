@@ -22,8 +22,8 @@ ini_set('display_errors', 1);
 // Or use the specific hostname provided by your hosting provider
 define('DB_HOST', '127.0.0.1');
 define('DB_NAME', 'ichhedana_expeditions');
-define('DB_USER', 'ichhedana_expeditions');
-define('DB_PASS', 'ichhedana_expeditions_pass');
+define('DB_USER', 'root'); // Change to 'ichhedana_expeditions' after creating user
+define('DB_PASS', ''); // Change to 'ichhedana_expeditions_pass' after creating user
 define('DB_CHARSET', 'utf8mb4');
 
 // Site Configuration
