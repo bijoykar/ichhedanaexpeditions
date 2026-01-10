@@ -65,14 +65,20 @@ if ($category) {
         <!-- Gallery Grid -->
         <?php if (!empty($images)): ?>
         <div class="gallery-masonry-modern">
-            <?php foreach ($images as $image): ?>
+            <?php foreach ($images as $image): 
+                // Fix image path - avoid duplication if path already contains 'uploads/gallery/'
+                $imagePath = (strpos($image['image_path'], 'uploads/gallery/') === 0) 
+                    ? $image['image_path'] 
+                    : 'uploads/gallery/' . $image['image_path'];
+                $imageUrl = SITE_URL . '/' . $imagePath;
+            ?>
             <div class="gallery-item-modern" data-category="<?php echo htmlspecialchars($image['category']); ?>">
-                <a href="<?php echo UPLOAD_URL . '/gallery/' . $image['image_path']; ?>" 
+                <a href="<?php echo $imageUrl; ?>" 
                    class="gallery-link-modern" 
                    data-lightbox="gallery" 
                    data-title="<?php echo htmlspecialchars($image['title']); ?>">
                     <div class="gallery-image-wrapper">
-                        <img src="<?php echo UPLOAD_URL . '/gallery/' . $image['image_path']; ?>" 
+                        <img src="<?php echo $imageUrl; ?>" 
                              alt="<?php echo htmlspecialchars($image['title']); ?>"
                              loading="lazy">
                     </div>
