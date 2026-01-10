@@ -112,9 +112,23 @@ require_once __DIR__ . '/includes/header.php';
                             <?php if ($review['customer_photo']): ?>
                                 <img src="<?php echo UPLOAD_URL . '/reviews/' . $review['customer_photo']; ?>" 
                                      alt="<?php echo htmlspecialchars($review['customer_name']); ?>">
-                            <?php else: ?>
-                                <div class="avatar-placeholder">
-                                    <i class="fas fa-user"></i>
+                            <?php else: 
+                                // Generate avatar from initials
+                                $nameParts = explode(' ', $review['customer_name']);
+                                $initials = '';
+                                foreach ($nameParts as $part) {
+                                    if (!empty($part)) {
+                                        $initials .= strtoupper($part[0]);
+                                        if (strlen($initials) >= 2) break;
+                                    }
+                                }
+                                // Generate color based on name
+                                $colors = ['#667eea', '#764ba2', '#f093fb', '#4facfe', '#43e97b', '#fa709a', '#30cfd0', '#a8edea'];
+                                $colorIndex = ord($initials[0]) % count($colors);
+                                $bgColor = $colors[$colorIndex];
+                            ?>
+                                <div class="avatar-initials" style="background: <?php echo $bgColor; ?>;">
+                                    <?php echo $initials; ?>
                                 </div>
                             <?php endif; ?>
                         </div>
@@ -137,7 +151,9 @@ require_once __DIR__ . '/includes/header.php';
                                 data-name="<?php echo htmlspecialchars($review['customer_name']); ?>"
                                 data-rating="<?php echo $review['rating']; ?>"
                                 data-date="<?php echo $review['review_date'] ? formatDate($review['review_date']) : ''; ?>"
-                                data-photo="<?php echo $review['customer_photo'] ? UPLOAD_URL . '/reviews/' . $review['customer_photo'] : ASSETS_URL . '/images/default-avatar.jpg'; ?>"
+                                data-photo="<?php echo $review['customer_photo'] ? UPLOAD_URL . '/reviews/' . $review['customer_photo'] : ''; ?>"
+                                data-initials="<?php echo $initials; ?>"
+                                data-avatar-color="<?php echo $bgColor; ?>"
                                 data-text="<?php echo htmlspecialchars($review['review_text']); ?>">
                             Read More <i class="fas fa-chevron-right"></i>
                         </button>
@@ -246,7 +262,7 @@ require_once __DIR__ . '/includes/header.php';
         <div class="modal-body">
             <div class="review-full">
                 <div class="review-header-full">
-                    <img id="fullReviewPhoto" src="" alt="">
+                    <div class="full-review-avatar" id="fullReviewAvatar"></div>
                     <div>
                         <h4 id="fullReviewName"></h4>
                         <div class="rating-stars" id="fullReviewRating"></div>
@@ -370,6 +386,18 @@ require_once __DIR__ . '/includes/header.php';
     justify-content: center;
     color: white;
     font-size: 24px;
+}
+
+.avatar-initials {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 22px;
+    font-weight: 700;
+    text-transform: uppercase;
 }
 
 .reviewer-details h4 {
@@ -642,10 +670,17 @@ require_once __DIR__ . '/includes/header.php';
     border-bottom: 2px solid #f0f0f0;
 }
 
-.review-header-full img {
+.full-review-avatar {
     width: 80px;
     height: 80px;
     border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.full-review-avatar img {
+    width: 100%;
+    height: 100%;
     object-fit: cover;
 }
 
@@ -722,12 +757,21 @@ document.querySelectorAll('.read-more-btn').forEach(btn => {
         const rating = parseInt(this.dataset.rating);
         const date = this.dataset.date;
         const photo = this.dataset.photo;
+        const initials = this.dataset.initials;
+        const avatarColor = this.dataset.avatarColor;
         const text = this.dataset.text;
         
         document.getElementById('fullReviewName').textContent = name;
-        document.getElementById('fullReviewPhoto').src = photo;
         document.getElementById('fullReviewDate').innerHTML = '<i class="far fa-calendar"></i> ' + date;
         document.getElementById('fullReviewText').textContent = text;
+        
+        // Set avatar or photo
+        const avatarContainer = document.getElementById('fullReviewAvatar');
+        if (photo) {
+            avatarContainer.innerHTML = `<img src="${photo}" alt="${name}">`;
+        } else {
+            avatarContainer.innerHTML = `<div class="avatar-initials" style="background: ${avatarColor};">${initials}</div>`;
+        }
         
         // Generate stars
         let starsHtml = '';
