@@ -23,11 +23,11 @@ ini_set('display_errors', 1);
 define('DB_HOST', 'localhost');
 define('DB_NAME', 'ichhedana_expeditions');
 define('DB_USER', 'ichhedana_expeditions');
-define('DB_PASS', 'ichhedana_expeditions');
+define('DB_PASS', '@ichhedana_expeditions_pass');
 define('DB_CHARSET', 'utf8mb4');
 
 // Site Configuration
-define('SITE_URL', 'http://localhost/ichhedanaexpeditions');
+define('SITE_URL', 'http://143.244.141.5/ichhedanaexpeditions');
 define('SITE_NAME', 'Ichhedana Expeditions');
 define('SITE_TAGLINE', 'Wildlife Photography Tours & Expeditions');
 define('SITE_EMAIL', 'ichhedanaexpeditions@gmail.com');
