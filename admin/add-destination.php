@@ -34,30 +34,61 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_destination'])) {
         $slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $name)));
     }
     
-    try {
-        $sql = "INSERT INTO destinations (
-                    name, slug, region, country, description, climate_info,
-                    best_time_to_visit, wildlife_info, meta_title, meta_description,
-                    meta_keywords, status, featured, display_order
-                ) VALUES (
-                    ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?
-                )";
+    // Handle image upload
+    $featured_image = null;
+    if (isset($_FILES['featured_image']) && $_FILES['featured_image']['error'] === UPLOAD_ERR_OK) {
+        $file = $_FILES['featured_image'];
+        $allowed = ['jpg', 'jpeg', 'png', 'webp', 'gif'];
+        $filename = $file['name'];
+        $ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
         
-        $stmt = $db->prepare($sql);
-        $stmt->execute([
-            $name, $slug, $region, $country, $description, $climate_info,
-            $best_time_to_visit, $wildlife_info, $meta_title, $meta_description,
-            $meta_keywords, $status, $featured, $display_order
-        ]);
-        
-        $success = 'Destination added successfully!';
-        // Redirect to edit page with ID
-        $destinationId = $db->lastInsertId();
-        header("Location: edit-destination.php?id=$destinationId&success=1");
-        exit;
-        
-    } catch (Exception $e) {
-        $error = 'Error adding destination: ' . $e->getMessage();
+        if (in_array($ext, $allowed)) {
+            // Create upload directory if not exists
+            $uploadDir = DESTINATION_UPLOAD_DIR;
+            if (!file_exists($uploadDir)) {
+                mkdir($uploadDir, 0755, true);
+            }
+            
+            // Generate unique filename
+            $newFilename = 'destination_' . time() . '_' . uniqid() . '.' . $ext;
+            $destination_path = $uploadDir . '/' . $newFilename;
+            
+            if (move_uploaded_file($file['tmp_name'], $destination_path)) {
+                $featured_image = $newFilename;
+            } else {
+                $error = 'Failed to upload image.';
+            }
+        } else {
+            $error = 'Invalid file type. Allowed: ' . implode(', ', $allowed);
+        }
+    }
+    
+    if (!$error) {
+        try {
+            $sql = "INSERT INTO destinations (
+                        name, slug, region, country, description, climate_info,
+                        best_time_to_visit, wildlife_info, featured_image, meta_title, 
+                        meta_description, meta_keywords, status, featured, display_order
+                    ) VALUES (
+                        ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?
+                    )";
+            
+            $stmt = $db->prepare($sql);
+            $stmt->execute([
+                $name, $slug, $region, $country, $description, $climate_info,
+                $best_time_to_visit, $wildlife_info, $featured_image, $meta_title, 
+                $meta_description, $meta_keywords, $status, $featured, $display_order
+            ]);
+            
+            $success = 'Destination added successfully!';
+            // Redirect to edit page with ID
+            $destinationId = $db->lastInsertId();
+            header("Location: edit-destination.php?id=$destinationId&success=1");
+            exit;
+            
+        } catch (Exception $e) {
+            $error = 'Error adding destination: ' . $e->getMessage();
+        }
     }
 }
 ?>
@@ -360,6 +391,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_destination'])) {
                         <textarea name="description" class="large" required
                                   placeholder="Detailed description of the destination, its significance, what makes it special..."></textarea>
                         <small>Comprehensive overview of the destination</small>
+                    </div>
+                </div>
+                
+                <!-- Featured Image -->
+                <div class="form-card">
+                    <h2>Featured Image</h2>
+                    
+                    <div class="form-group">
+                        <label>Upload Image</label>
+                        <input type="file" name="featured_image" accept="image/*">
+                        <small>Recommended size: 1200x900px. Formats: JPG, PNG, WebP, GIF</small>
                     </div>
                 </div>
                 

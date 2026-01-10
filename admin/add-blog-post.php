@@ -38,28 +38,59 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_post'])) {
         $published_at = date('Y-m-d H:i:s');
     }
     
-    try {
-        $sql = "INSERT INTO blog_posts (
-                    title, slug, author_id, excerpt, content, category, tags,
-                    meta_title, meta_description, meta_keywords, status, featured, published_at
-                ) VALUES (
-                    ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?
-                )";
+    // Handle image upload
+    $featured_image = null;
+    if (isset($_FILES['featured_image']) && $_FILES['featured_image']['error'] === UPLOAD_ERR_OK) {
+        $file = $_FILES['featured_image'];
+        $allowed = ['jpg', 'jpeg', 'png', 'webp', 'gif'];
+        $filename = $file['name'];
+        $ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
         
-        $stmt = $db->prepare($sql);
-        $stmt->execute([
-            $title, $slug, $currentAdminId, $excerpt, $content, $category, $tags,
-            $meta_title, $meta_description, $meta_keywords, $status, $featured, $published_at
-        ]);
-        
-        $success = 'Blog post added successfully!';
-        // Redirect to edit page with ID
-        $postId = $db->lastInsertId();
-        header("Location: edit-blog-post.php?id=$postId&success=1");
-        exit;
-        
-    } catch (Exception $e) {
-        $error = 'Error adding post: ' . $e->getMessage();
+        if (in_array($ext, $allowed)) {
+            // Create upload directory if not exists
+            $uploadDir = BLOG_UPLOAD_DIR;
+            if (!file_exists($uploadDir)) {
+                mkdir($uploadDir, 0755, true);
+            }
+            
+            // Generate unique filename
+            $newFilename = 'blog_' . time() . '_' . uniqid() . '.' . $ext;
+            $destination = $uploadDir . '/' . $newFilename;
+            
+            if (move_uploaded_file($file['tmp_name'], $destination)) {
+                $featured_image = $newFilename;
+            } else {
+                $error = 'Failed to upload image.';
+            }
+        } else {
+            $error = 'Invalid file type. Allowed: ' . implode(', ', $allowed);
+        }
+    }
+    
+    if (!$error) {
+        try {
+            $sql = "INSERT INTO blog_posts (
+                        title, slug, author_id, excerpt, content, featured_image, category, tags,
+                        meta_title, meta_description, meta_keywords, status, featured, published_at
+                    ) VALUES (
+                        ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?
+                    )";
+            
+            $stmt = $db->prepare($sql);
+            $stmt->execute([
+                $title, $slug, $currentAdminId, $excerpt, $content, $featured_image, $category, $tags,
+                $meta_title, $meta_description, $meta_keywords, $status, $featured, $published_at
+            ]);
+            
+            $success = 'Blog post added successfully!';
+            // Redirect to edit page with ID
+            $postId = $db->lastInsertId();
+            header("Location: edit-blog-post.php?id=$postId&success=1");
+            exit;
+            
+        } catch (Exception $e) {
+            $error = 'Error adding post: ' . $e->getMessage();
+        }
     }
 }
 ?>
@@ -339,6 +370,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_post'])) {
                         <input type="text" name="tags" 
                                placeholder="wildlife, photography, bird watching">
                         <small>Comma-separated tags</small>
+                    </div>
+                </div>
+                
+                <!-- Featured Image -->
+                <div class="form-card">
+                    <h2>Featured Image</h2>
+                    
+                    <div class="form-group">
+                        <label>Upload Image</label>
+                        <input type="file" name="featured_image" accept="image/*">
+                        <small>Recommended size: 1200x900px. Formats: JPG, PNG, WebP, GIF</small>
                     </div>
                 </div>
                 

@@ -40,6 +40,70 @@ if (isset($_GET['success'])) {
     $success = 'Destination created successfully! You can now add images and more details.';
 }
 
+// Handle image upload
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['upload_image']) && isset($_FILES['featured_image'])) {
+    $file = $_FILES['featured_image'];
+    
+    if ($file['error'] === UPLOAD_ERR_OK) {
+        $allowed = ['jpg', 'jpeg', 'png', 'webp', 'gif'];
+        $filename = $file['name'];
+        $ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
+        
+        if (in_array($ext, $allowed)) {
+            // Create upload directory if not exists
+            $uploadDir = DESTINATION_UPLOAD_DIR;
+            if (!file_exists($uploadDir)) {
+                mkdir($uploadDir, 0755, true);
+            }
+            
+            // Generate unique filename
+            $newFilename = 'destination_' . $destinationId . '_' . time() . '.' . $ext;
+            $destination_path = $uploadDir . '/' . $newFilename;
+            
+            if (move_uploaded_file($file['tmp_name'], $destination_path)) {
+                // Delete old image if exists
+                if ($destination['featured_image'] && file_exists(DESTINATION_UPLOAD_DIR . '/' . $destination['featured_image'])) {
+                    unlink(DESTINATION_UPLOAD_DIR . '/' . $destination['featured_image']);
+                }
+                
+                // Update database
+                $stmt = $db->prepare("UPDATE destinations SET featured_image = ? WHERE id = ?");
+                $stmt->execute([$newFilename, $destinationId]);
+                
+                $success = 'Image uploaded successfully!';
+                
+                // Refresh destination data
+                $stmt = $db->prepare("SELECT * FROM destinations WHERE id = ?");
+                $stmt->execute([$destinationId]);
+                $destination = $stmt->fetch();
+            } else {
+                $error = 'Failed to move uploaded file.';
+            }
+        } else {
+            $error = 'Invalid file type. Allowed: ' . implode(', ', $allowed);
+        }
+    } else {
+        $error = 'Upload error: ' . $file['error'];
+    }
+}
+
+// Handle image deletion
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_image'])) {
+    if ($destination['featured_image'] && file_exists(DESTINATION_UPLOAD_DIR . '/' . $destination['featured_image'])) {
+        unlink(DESTINATION_UPLOAD_DIR . '/' . $destination['featured_image']);
+    }
+    
+    $stmt = $db->prepare("UPDATE destinations SET featured_image = NULL WHERE id = ?");
+    $stmt->execute([$destinationId]);
+    
+    $success = 'Image deleted successfully!';
+    
+    // Refresh destination data
+    $stmt = $db->prepare("SELECT * FROM destinations WHERE id = ?");
+    $stmt->execute([$destinationId]);
+    $destination = $stmt->fetch();
+}
+
 // Handle form submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_destination'])) {
     $name = sanitize($_POST['name']);
@@ -539,6 +603,43 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_destination'])
                             </div>
                         </div>
                     </div>
+                </div>
+                
+                <div class="sidebar-card">
+                    <h3>Featured Image</h3>
+                    <?php if ($destination['featured_image']): ?>
+                    <div class="current-image" style="margin-bottom: 15px;">
+                        <img src="<?php echo UPLOAD_URL . '/destinations/' . $destination['featured_image']; ?>" 
+                             alt="Featured Image" 
+                             style="width: 100%; height: auto; border-radius: 8px; margin-bottom: 10px;">
+                        <form method="POST" style="margin: 0;" onsubmit="return confirm('Are you sure you want to delete this image?');">
+                            <button type="submit" name="delete_image" class="btn btn-secondary btn-sm" 
+                                    style="width: 100%; justify-content: center;">
+                                <i class="fas fa-trash"></i> Delete Image
+                            </button>
+                        </form>
+                    </div>
+                    <?php else: ?>
+                    <p style="color: #6b7280; font-size: 14px; margin-bottom: 15px;">No featured image uploaded</p>
+                    <?php endif; ?>
+                    
+                    <form method="POST" enctype="multipart/form-data" style="margin: 0;">
+                        <div class="form-group" style="margin-bottom: 10px;">
+                            <input type="file" name="featured_image" accept="image/*" 
+                                   id="featuredImageInput" style="display: none;" 
+                                   onchange="document.getElementById('uploadImageBtn').disabled = false;">
+                            <button type="button" class="btn btn-secondary btn-sm" 
+                                    onclick="document.getElementById('featuredImageInput').click();"
+                                    style="width: 100%; justify-content: center;">
+                                <i class="fas fa-image"></i> Choose Image
+                            </button>
+                        </div>
+                        <button type="submit" name="upload_image" id="uploadImageBtn" 
+                                class="btn btn-primary btn-sm" disabled
+                                style="width: 100%; justify-content: center;">
+                            <i class="fas fa-upload"></i> Upload Image
+                        </button>
+                    </form>
                 </div>
                 
                 <div class="sidebar-card">
