@@ -4,7 +4,24 @@ $meta_description = 'Explore our curated wildlife and nature photography expedit
 require_once __DIR__ . '/includes/header.php';
 
 $tourModel = new Tour();
-$tours = $tourModel->getPublished();
+$destModel = new Destination();
+
+// Get filter parameters
+$destinationFilter = isset($_GET['destination']) ? (int)$_GET['destination'] : 0;
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+$perPage = 12;
+
+// Get all destinations for filter
+$destinations = $destModel->where(['status' => 'published'], 'name ASC');
+
+// Get tours based on filter with pagination
+if ($destinationFilter) {
+    $result = $tourModel->paginate($page, $perPage, ['status' => 'published', 'destination_id' => $destinationFilter], 'start_date ASC');
+} else {
+    $result = $tourModel->paginate($page, $perPage, ['status' => 'published'], 'start_date ASC');
+}
+
+$tours = $result['data'];
 ?>
 
 <!-- Modern Tours Header -->
@@ -28,7 +45,37 @@ $tours = $tourModel->getPublished();
 <!-- Tours Grid Section -->
 <section class="modern-tours-section">
     <div class="container">
+        <!-- Filter Section -->
+        <div class="tours-filter-section">
+            <div class="filter-header">
+                <h3><i class="fas fa-filter"></i> Filter Tours</h3>
+            </div>
+            <form method="GET" action="" class="filter-form">
+                <div class="filter-group">
+                    <label for="destination-filter">
+                        <i class="fas fa-map-marker-alt"></i> Destination
+                    </label>
+                    <select name="destination" id="destination-filter" onchange="this.form.submit()">
+                        <option value="">All Destinations</option>
+                        <?php foreach ($destinations as $dest): ?>
+                        <option value="<?php echo $dest['id']; ?>" <?php echo $destinationFilter == $dest['id'] ? 'selected' : ''; ?>>
+                            <?php echo htmlspecialchars($dest['name']); ?>
+                        </option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+                <?php if ($destinationFilter): ?>
+                <a href="tours.php" class="clear-filter-btn">
+                    <i class="fas fa-times"></i> Clear Filter
+                </a>
+                <?php endif; ?>
+            </form>
+        </div>
+
         <?php if (!empty($tours)): ?>
+        <div class="tours-count">
+            <p>Showing <?php echo count($tours); ?> of <?php echo $result['total_pages'] * $perPage; ?> tours</p>
+        </div>
         <div class="modern-tours-grid">
             <?php foreach ($tours as $tour): ?>
             <div class="modern-tour-card" data-tour-id="<?php echo $tour['id']; ?>">
@@ -87,6 +134,20 @@ $tours = $tourModel->getPublished();
             </div>
             <?php endforeach; ?>
         </div>
+        
+        <!-- Pagination -->
+        <?php if (isset($result) && $result['total_pages'] > 1): ?>
+        <div class="pagination-wrapper">
+            <?php 
+            $paginationUrl = SITE_URL . '/tours.php';
+            if ($destinationFilter) {
+                $paginationUrl .= '?destination=' . $destinationFilter;
+            }
+            echo getPaginationHTML($result['current_page'], $result['total_pages'], $paginationUrl); 
+            ?>
+        </div>
+        <?php endif; ?>
+        
         <?php else: ?>
         <div class="no-tours-message">
             <div class="no-tours-icon">
@@ -184,6 +245,111 @@ $tours = $tourModel->getPublished();
 .modern-tours-section {
     padding: 80px 0;
     background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);
+}
+
+/* Tours Filter Section */
+.tours-filter-section {
+    background: white;
+    border-radius: 15px;
+    padding: 25px 30px;
+    margin-bottom: 40px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e9ecef;
+}
+
+.filter-header {
+    margin-bottom: 20px;
+}
+
+.filter-header h3 {
+    font-size: 20px;
+    color: #2d3748;
+    font-weight: 600;
+    margin: 0;
+}
+
+.filter-header h3 i {
+    color: #667eea;
+    margin-right: 10px;
+}
+
+.filter-form {
+    display: flex;
+    align-items: flex-end;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.filter-group {
+    flex: 1;
+    min-width: 250px;
+}
+
+.filter-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: #4a5568;
+    margin-bottom: 8px;
+}
+
+.filter-group label i {
+    color: #667eea;
+    margin-right: 6px;
+}
+
+.filter-group select {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #e2e8f0;
+    border-radius: 10px;
+    font-size: 15px;
+    color: #2d3748;
+    background: white;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.filter-group select:hover {
+    border-color: #667eea;
+}
+
+.filter-group select:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.clear-filter-btn {
+    padding: 12px 25px;
+    background: linear-gradient(135deg, #f56565 0%, #e53e3e 100%);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.clear-filter-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(245, 101, 101, 0.3);
+}
+
+.tours-count {
+    margin-bottom: 20px;
+    text-align: right;
+}
+
+.tours-count p {
+    font-size: 14px;
+    color: #718096;
+    font-weight: 500;
 }
 
 .modern-tours-grid {
