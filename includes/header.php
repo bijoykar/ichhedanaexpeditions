@@ -189,7 +189,7 @@ if (MAINTENANCE_MODE && !isLoggedIn()) {
     }
     
     .contact-link:hover {
-        background: rgba(255,255,255,0.15);
+        color: rgba(255,255,255,1);
         transform: translateY(-2px);
     }
     
@@ -217,20 +217,22 @@ if (MAINTENANCE_MODE && !isLoggedIn()) {
     }
     
     .social-icon:hover {
-        background: white;
         transform: translateY(-3px) scale(1.1);
     }
     
     .social-icon.facebook:hover {
-        color: #1877f2;
+        background: #1877f2;
+        color: white;
     }
     
     .social-icon.instagram:hover {
-        color: #E4405F;
+        background: #E4405F;
+        color: white;
     }
     
     .social-icon.group:hover {
-        color: #228B22;
+        background: #228B22;
+        color: white;
     }
     
     /* Modern Main Nav */
@@ -286,6 +288,7 @@ if (MAINTENANCE_MODE && !isLoggedIn()) {
         border-radius: 10px;
         transition: all 0.3s ease;
         position: relative;
+        text-transform: uppercase;
     }
     
     .modern-nav-menu li a i {
@@ -295,7 +298,6 @@ if (MAINTENANCE_MODE && !isLoggedIn()) {
     }
     
     .modern-nav-menu li a:hover {
-        background: rgba(255,255,255,0.2);
         color: white;
         transform: translateY(-2px);
     }
@@ -321,7 +323,7 @@ if (MAINTENANCE_MODE && !isLoggedIn()) {
     }
     
     .modern-mobile-toggle:hover {
-        background: rgba(255,255,255,0.2);
+        transform: scale(1.05);
     }
     
     .modern-mobile-toggle span {
@@ -412,8 +414,8 @@ if (MAINTENANCE_MODE && !isLoggedIn()) {
         }
         
         .modern-nav-menu li a:hover {
-            background: linear-gradient(135deg, #228B22 0%, #2F4F4F 100%);
-            color: white;
+            color: #228B22;
+            font-weight: 600;
         }
         
         .modern-nav-menu li a:hover i {
