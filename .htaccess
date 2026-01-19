@@ -3,7 +3,7 @@
 # Enable Rewrite Engine
 <IfModule mod_rewrite.c>
     RewriteEngine On
-    RewriteBase /ichhedanaexpeditions/
+    RewriteBase /
     
     # Force HTTPS
     RewriteCond %{HTTPS} off
