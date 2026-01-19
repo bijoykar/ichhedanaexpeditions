@@ -44,6 +44,71 @@ if (isset($_GET['success'])) {
     $success = 'Gallery image created successfully! You can now upload the actual image file.';
 }
 
+// Handle image upload
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['gallery_image'])) {
+    $file = $_FILES['gallery_image'];
+    
+    if ($file['error'] === UPLOAD_ERR_OK) {
+        $allowed = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
+        $filename = $file['name'];
+        $filetype = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
+        
+        if (in_array($filetype, $allowed)) {
+            if ($file['size'] <= 5242880) { // 5MB
+                $upload_dir = __DIR__ . '/../uploads/gallery/';
+                if (!file_exists($upload_dir)) {
+                    mkdir($upload_dir, 0777, true);
+                }
+                
+                // Delete old image if exists
+                if ($image['image_path'] && $image['image_path'] !== 'placeholder.jpg') {
+                    $old_file = $upload_dir . $image['image_path'];
+                    if (file_exists($old_file)) {
+                        unlink($old_file);
+                    }
+                }
+                
+                $new_filename = time() . '_' . uniqid() . '.' . $filetype;
+                $destination = $upload_dir . $new_filename;
+                
+                if (move_uploaded_file($file['tmp_name'], $destination)) {
+                    $stmt = $db->prepare("UPDATE gallery SET image_path = ? WHERE id = ?");
+                    $stmt->execute([$new_filename, $imageId]);
+                    
+                    $success = 'Image uploaded successfully!';
+                    $image['image_path'] = $new_filename;
+                } else {
+                    $error = 'Failed to move uploaded file.';
+                }
+            } else {
+                $error = 'File size must be less than 5MB.';
+            }
+        } else {
+            $error = 'Invalid file type. Allowed: ' . implode(', ', $allowed);
+        }
+    } else {
+        $error = 'Upload error: ' . $file['error'];
+    }
+}
+
+// Handle image deletion
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_image'])) {
+    if ($image['image_path'] && $image['image_path'] !== 'placeholder.jpg') {
+        $upload_dir = __DIR__ . '/../uploads/gallery/';
+        $file_path = $upload_dir . $image['image_path'];
+        
+        if (file_exists($file_path)) {
+            unlink($file_path);
+        }
+        
+        $stmt = $db->prepare("UPDATE gallery SET image_path = 'placeholder.jpg' WHERE id = ?");
+        $stmt->execute([$imageId]);
+        
+        $success = 'Image deleted successfully!';
+        $image['image_path'] = 'placeholder.jpg';
+    }
+}
+
 // Handle form submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_image'])) {
     $title = sanitize($_POST['title']);
@@ -158,6 +223,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_image'])) {
 .btn-primary:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+}
+
+.btn-danger {
+    background: #dc2626;
+    color: white;
+}
+
+.btn-danger:hover {
+    background: #b91c1c;
+}
+
+.btn-sm {
+    padding: 8px 16px;
+    font-size: 13px;
 }
 
 .form-actions .btn {
@@ -378,21 +457,41 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_image'])) {
     <form method="POST" action="" enctype="multipart/form-data">
         <div class="form-layout">
             <div class="form-main">
-                <!-- Current Image -->
+                <!-- Gallery Image Upload -->
                 <div class="form-card">
-                    <h2>Current Image</h2>
+                    <h2>Gallery Image</h2>
                     
-                    <?php if ($image['image_path'] && $image['image_path'] != 'placeholder.jpg'): ?>
-                    <img src="<?php echo UPLOAD_URL . '/gallery/' . $image['image_path']; ?>" 
-                         alt="<?php echo htmlspecialchars($image['title'] ?? ''); ?>" 
-                         class="current-image">
-                    <?php else: ?>
-                    <div class="current-image" style="background: linear-gradient(135deg, #228B22 0%, #2F4F4F 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 18px;">
-                        <i class="fas fa-image" style="font-size: 64px; opacity: 0.5;"></i>
+                    <div style="margin-bottom: 20px;">
+                        <?php if ($image['image_path'] && $image['image_path'] != 'placeholder.jpg'): ?>
+                        <img src="<?php echo UPLOAD_URL . '/gallery/' . $image['image_path']; ?>" 
+                             alt="<?php echo htmlspecialchars($image['title'] ?? ''); ?>" 
+                             style="max-width: 100%; height: auto; border-radius: 8px; margin-bottom: 15px;">
+                        
+                        <form method="POST" style="display: inline;">
+                            <button type="submit" name="delete_image" class="btn btn-danger btn-sm" 
+                                    onclick="return confirm('Are you sure you want to delete this image?')">
+                                <i class="fas fa-trash"></i> Delete Image
+                            </button>
+                        </form>
+                        <?php else: ?>
+                        <div style="background: linear-gradient(135deg, #228B22 0%, #2F4F4F 100%); padding: 60px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; margin-bottom: 15px;">
+                            <i class="fas fa-image" style="font-size: 64px; opacity: 0.5;"></i>
+                        </div>
+                        <?php endif; ?>
                     </div>
-                    <?php endif; ?>
                     
-                    <small style="color: #6b7280;">Upload new image to replace (feature not yet implemented)</small>
+                    <form method="POST" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label>Upload New Image</label>
+                            <input type="file" name="gallery_image" accept="image/*" required>
+                            <small style="color: #6b7280; display: block; margin-top: 5px;">
+                                Allowed: JPG, JPEG, PNG, GIF, WEBP (Max 5MB)
+                            </small>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-upload"></i> Upload Image
+                        </button>
+                    </form>
                 </div>
                 
                 <!-- Basic Information -->

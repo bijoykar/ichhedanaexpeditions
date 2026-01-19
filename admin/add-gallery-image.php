@@ -5,9 +5,6 @@ require_once __DIR__ . '/../includes/functions.php';
 
 requireLogin();
 
-$page_title = 'Add Gallery Image';
-require_once __DIR__ . '/includes/admin-header.php';
-
 $db = Database::getInstance()->getConnection();
 $destinationModel = new Destination();
 $tourModel = new Tour();
@@ -75,6 +72,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_image'])) {
         $error = 'Error adding image: ' . $e->getMessage();
     }
 }
+
+$page_title = 'Add Gallery Image';
+require_once __DIR__ . '/includes/admin-header.php';
 ?>
 
 <style>
