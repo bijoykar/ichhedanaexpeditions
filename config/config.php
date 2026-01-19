@@ -25,7 +25,7 @@ define('DB_PASS', '@ichhedana_expeditions_pass');
 define('DB_CHARSET', 'utf8mb4');
 
 // Site Configuration - PRODUCTION
-define('SITE_URL', 'https://godesire.in');  // Change to your domain with HTTPS
+define('SITE_URL', 'http://godesire.in/ichhedanaexpeditions');
 define('SITE_NAME', 'Ichhedana Expeditions');
 define('SITE_TAGLINE', 'Wildlife Photography Tours & Expeditions');
 define('SITE_EMAIL', 'ichhedanaexpeditions@gmail.com');
