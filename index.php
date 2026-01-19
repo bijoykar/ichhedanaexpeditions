@@ -664,7 +664,59 @@ document.addEventListener('DOMContentLoaded', function() {
         margin-top: -60px;
     }
 }
+
+/* Line Separator with Paw Icon */
+.section-separator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 1200px;
+    margin: 60px auto;
+    padding: 0 20px;
+}
+
+.separator-line {
+    flex: 1;
+    height: 2px;
+    background: linear-gradient(to right, transparent, rgba(34, 139, 34, 0.3), rgba(34, 139, 34, 0.6));
+}
+
+.separator-line.right {
+    background: linear-gradient(to left, transparent, rgba(34, 139, 34, 0.3), rgba(34, 139, 34, 0.6));
+}
+
+.separator-icon {
+    margin: 0 20px;
+    font-size: 24px;
+    color: #228B22;
+    opacity: 0.8;
+    transition: all 0.3s ease;
+}
+
+.separator-icon:hover {
+    transform: scale(1.2) rotate(10deg);
+    opacity: 1;
+}
+
+@media (max-width: 768px) {
+    .section-separator {
+        margin: 40px auto;
+    }
+    
+    .separator-icon {
+        font-size: 20px;
+        margin: 0 15px;
+    }
+}
 </style>
+
+<!-- Line Separator -->
+<div class="section-separator">
+    <div class="separator-line"></div>
+    <i class="fa-solid fa-paw separator-icon"></i>
+    <div class="separator-line right"></div>
+</div>
 
 <!-- Photography Tours 2025 -->
 <section class="modern-section tours-section">
@@ -719,6 +771,13 @@ document.addEventListener('DOMContentLoaded', function() {
     </div>
 </section>
 
+<!-- Line Separator -->
+<div class="section-separator">
+    <div class="separator-line"></div>
+    <i class="fa-solid fa-paw separator-icon"></i>
+    <div class="separator-line right"></div>
+</div>
+
 <!-- Top Destinations -->
 <section class="modern-section destinations-section">
     <div class="container">
@@ -757,6 +816,13 @@ document.addEventListener('DOMContentLoaded', function() {
     </div>
 </section>
 
+<!-- Line Separator -->
+<div class="section-separator">
+    <div class="separator-line"></div>
+    <i class="fa-solid fa-paw separator-icon"></i>
+    <div class="separator-line right"></div>
+</div>
+
 <!-- Gallery -->
 <section class="modern-section gallery-section">
     <div class="container">
@@ -793,6 +859,13 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
     </div>
 </section>
+
+<!-- Line Separator -->
+<div class="section-separator">
+    <div class="separator-line"></div>
+    <i class="fa-solid fa-paw separator-icon"></i>
+    <div class="separator-line right"></div>
+</div>
 
 <!-- Recent Blog Posts -->
 <section class="modern-section blog-section">
@@ -837,6 +910,13 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
     </div>
 </section>
+
+<!-- Line Separator -->
+<div class="section-separator">
+    <div class="separator-line"></div>
+    <i class="fa-solid fa-paw separator-icon"></i>
+    <div class="separator-line right"></div>
+</div>
 
 <!-- Reviews -->
 <section class="modern-section reviews-section">
