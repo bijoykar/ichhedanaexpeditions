@@ -1,6 +1,6 @@
 <?php
 /**
- * Ichhedana Expeditions - Configuration File
+ * Ichhedana Expeditions - Production Configuration
  * 
  * @package IchhedanaExpeditions
  * @version 1.0
@@ -14,20 +14,18 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 // Error Reporting (Set to 0 in production)
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+error_reporting(0);
+ini_set('display_errors', 0);
 
-// Database Configuration
-// Use '127.0.0.1' instead of 'localhost' if your host blocks localhost
-// Or use the specific hostname provided by your hosting provider
+// Database Configuration - PRODUCTION
 define('DB_HOST', 'localhost');
 define('DB_NAME', 'ichhedana_expeditions');
 define('DB_USER', 'ichhedana_expeditions');
 define('DB_PASS', '@ichhedana_expeditions_pass');
 define('DB_CHARSET', 'utf8mb4');
 
-// Site Configuration
-define('SITE_URL', 'http://localhost/ichhedanaexpeditions');
+// Site Configuration - PRODUCTION
+define('SITE_URL', 'http://143.244.141.5/ichhedanaexpeditions');
 define('SITE_NAME', 'Ichhedana Expeditions');
 define('SITE_TAGLINE', 'Wildlife Photography Tours & Expeditions');
 define('SITE_EMAIL', 'ichhedanaexpeditions@gmail.com');
@@ -99,7 +97,7 @@ define('MAINTENANCE_MODE', false);
 define('MAINTENANCE_MESSAGE', 'We are currently performing scheduled maintenance. Please check back soon.');
 
 // Cache Settings
-define('CACHE_ENABLED', false);
+define('CACHE_ENABLED', true);
 define('CACHE_LIFETIME', 3600); // 1 hour
 
 // Autoload classes
