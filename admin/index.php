@@ -102,7 +102,7 @@ $recentReviews = $db->query("SELECT * FROM reviews ORDER BY created_at DESC LIMI
 }
 
 .stat-icon.gradient-blue {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #228B22 0%, #2F4F4F 100%);
 }
 
 .stat-icon.gradient-green {
@@ -175,7 +175,7 @@ $recentReviews = $db->query("SELECT * FROM reviews ORDER BY created_at DESC LIMI
     gap: 6px;
     font-size: 13px;
     font-weight: 600;
-    color: #667eea;
+    color: #228B22;
     text-decoration: none;
     transition: gap 0.3s;
 }
@@ -287,7 +287,7 @@ $recentReviews = $db->query("SELECT * FROM reviews ORDER BY created_at DESC LIMI
 
 .message-item.unread {
     background: #eff6ff;
-    border-left: 3px solid #667eea;
+    border-left: 3px solid #228B22;
 }
 
 .message-header {
@@ -334,8 +334,8 @@ $recentReviews = $db->query("SELECT * FROM reviews ORDER BY created_at DESC LIMI
 }
 
 .btn-outline:hover {
-    border-color: #667eea;
-    color: #667eea;
+    border-color: #228B22;
+    color: #228B22;
     background: #f5f7ff;
 }
 
@@ -356,7 +356,7 @@ $recentReviews = $db->query("SELECT * FROM reviews ORDER BY created_at DESC LIMI
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background: #667eea;
+    background: #228B22;
     display: flex;
     align-items: center;
     justify-content: center;

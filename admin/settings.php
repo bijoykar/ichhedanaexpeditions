@@ -126,7 +126,7 @@ foreach ($statsData as $stat) {
 .form-group select:focus,
 .form-group textarea:focus {
     outline: none;
-    border-color: #667eea;
+    border-color: #228B22;
     box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
@@ -155,7 +155,7 @@ foreach ($statsData as $stat) {
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #228B22 0%, #2F4F4F 100%);
     color: white;
 }
 
@@ -204,7 +204,7 @@ foreach ($statsData as $stat) {
 .stat-preview-number {
     font-size: 32px;
     font-weight: 700;
-    color: #667eea;
+    color: #228B22;
     margin-bottom: 5px;
 }
 

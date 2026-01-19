@@ -19,7 +19,7 @@ $meta_keywords = $tour['meta_keywords'];
 
 <!-- Modern Tour Header -->
 <section class="modern-tour-header">
-    <div class="tour-header-bg" style="<?php echo $tour['featured_image'] ? 'background-image: url(\'' . UPLOAD_URL . '/tours/' . $tour['featured_image'] . '\');' : 'background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);'; ?>"></div>
+    <div class="tour-header-bg" style="<?php echo $tour['featured_image'] ? 'background-image: url(\'' . UPLOAD_URL . '/tours/' . $tour['featured_image'] . '\');' : 'background: linear-gradient(135deg, #228B22 0%, #2F4F4F 100%);'; ?>"></div>
     <div class="tour-header-overlay"></div>
     <div class="container">
         <div class="tour-header-content">
@@ -423,7 +423,7 @@ $meta_keywords = $tour['meta_keywords'];
     width: 50px;
     height: 50px;
     border-radius: 12px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #228B22 0%, #2F4F4F 100%);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -487,7 +487,7 @@ $meta_keywords = $tour['meta_keywords'];
     width: 50px;
     height: 50px;
     border-radius: 12px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #228B22 0%, #2F4F4F 100%);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -535,7 +535,7 @@ $meta_keywords = $tour['meta_keywords'];
     top: 50px;
     bottom: -30px;
     width: 2px;
-    background: linear-gradient(to bottom, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(to bottom, #228B22 0%, #2F4F4F 100%);
     opacity: 0.3;
 }
 
@@ -543,7 +543,7 @@ $meta_keywords = $tour['meta_keywords'];
     width: 45px;
     height: 45px;
     border-radius: 50%;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #228B22 0%, #2F4F4F 100%);
     color: white;
     display: flex;
     align-items: center;
@@ -561,7 +561,7 @@ $meta_keywords = $tour['meta_keywords'];
     background: #f8f9fa;
     padding: 20px 25px;
     border-radius: 12px;
-    border-left: 3px solid #667eea;
+    border-left: 3px solid #228B22;
 }
 
 .timeline-content p {
@@ -584,7 +584,7 @@ $meta_keywords = $tour['meta_keywords'];
     display: flex;
     align-items: center;
     gap: 12px;
-    border-left: 3px solid #667eea;
+    border-left: 3px solid #228B22;
     transition: all 0.3s ease;
 }
 
@@ -594,7 +594,7 @@ $meta_keywords = $tour['meta_keywords'];
 }
 
 .highlight-item i {
-    color: #667eea;
+    color: #228B22;
     font-size: 20px;
 }
 
@@ -662,7 +662,7 @@ $meta_keywords = $tour['meta_keywords'];
     padding: 35px;
     box-shadow: 0 8px 25px rgba(0,0,0,0.08);
     margin-bottom: 25px;
-    border-top: 5px solid #667eea;
+    border-top: 5px solid #228B22;
 }
 
 .booking-price {
@@ -676,7 +676,7 @@ $meta_keywords = $tour['meta_keywords'];
 .price-main {
     font-size: 42px;
     font-weight: 700;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #228B22 0%, #2F4F4F 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -710,7 +710,7 @@ $meta_keywords = $tour['meta_keywords'];
 }
 
 .btn-primary-modern {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #228B22 0%, #2F4F4F 100%);
     color: white;
     box-shadow: 0 4px 15px rgba(102,126,234,0.3);
 }
@@ -722,12 +722,12 @@ $meta_keywords = $tour['meta_keywords'];
 
 .btn-outline-modern {
     background: white;
-    color: #667eea;
-    border-color: #667eea;
+    color: #228B22;
+    border-color: #228B22;
 }
 
 .btn-outline-modern:hover {
-    background: #667eea;
+    background: #228B22;
     color: white;
     transform: translateY(-2px);
 }
@@ -762,7 +762,7 @@ $meta_keywords = $tour['meta_keywords'];
 
 .contact-header i {
     font-size: 28px;
-    color: #667eea;
+    color: #228B22;
 }
 
 .contact-header h3 {
@@ -804,7 +804,7 @@ $meta_keywords = $tour['meta_keywords'];
 }
 
 .contact-item i {
-    color: #667eea;
+    color: #228B22;
     font-size: 16px;
 }
 
@@ -859,7 +859,7 @@ $meta_keywords = $tour['meta_keywords'];
 }
 
 .share-btn.email {
-    background: #667eea;
+    background: #228B22;
 }
 
 /* Responsive */

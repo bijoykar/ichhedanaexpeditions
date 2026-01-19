@@ -131,7 +131,7 @@ if (isset($_GET['success']) && $_GET['success'] == 1) {
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #228B22 0%, #2F4F4F 100%);
     color: white;
 }
 
@@ -229,7 +229,7 @@ if (isset($_GET['success']) && $_GET['success'] == 1) {
 .form-group select:focus,
 .form-group textarea:focus {
     outline: none;
-    border-color: #667eea;
+    border-color: #228B22;
     box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
@@ -282,7 +282,7 @@ if (isset($_GET['success']) && $_GET['success'] == 1) {
 }
 
 .upload-area:hover {
-    border-color: #667eea;
+    border-color: #228B22;
     background: #f3f4f6;
 }
 
@@ -302,7 +302,7 @@ if (isset($_GET['success']) && $_GET['success'] == 1) {
     border-radius: 50%;
     object-fit: cover;
     margin-bottom: 15px;
-    border: 3px solid #667eea;
+    border: 3px solid #228B22;
 }
 
 .form-actions {
@@ -421,7 +421,7 @@ if (isset($_GET['success']) && $_GET['success'] == 1) {
                              alt="<?php echo htmlspecialchars($review['customer_name'] ?? ''); ?>" 
                              class="current-photo">
                         <?php else: ?>
-                        <div class="current-photo" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 32px; font-weight: 700;">
+                        <div class="current-photo" style="background: linear-gradient(135deg, #228B22 0%, #2F4F4F 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 32px; font-weight: 700;">
                             <?php echo strtoupper(substr($review['customer_name'] ?? 'U', 0, 1)); ?>
                         </div>
                         <?php endif; ?>

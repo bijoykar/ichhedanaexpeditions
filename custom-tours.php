@@ -9,7 +9,7 @@ require_once 'includes/header.php';
 
 <style>
 .page-header {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #228B22 0%, #2F4F4F 100%);
     padding: 80px 0 60px;
     text-align: center;
     color: white;
@@ -78,7 +78,7 @@ require_once 'includes/header.php';
 .feature-icon {
     width: 80px;
     height: 80px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #228B22 0%, #2F4F4F 100%);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -132,7 +132,7 @@ require_once 'includes/header.php';
 .step-number {
     width: 60px;
     height: 60px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #228B22 0%, #2F4F4F 100%);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -183,13 +183,13 @@ require_once 'includes/header.php';
 }
 
 .option-card:hover {
-    border-color: #667eea;
+    border-color: #228B22;
     transform: translateY(-3px);
 }
 
 .option-card i {
     font-size: 32px;
-    color: #667eea;
+    color: #228B22;
     margin-bottom: 15px;
 }
 
@@ -217,12 +217,12 @@ require_once 'includes/header.php';
     content: "✓";
     position: absolute;
     left: 0;
-    color: #667eea;
+    color: #228B22;
     font-weight: 700;
 }
 
 .cta-section {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #228B22 0%, #2F4F4F 100%);
     color: white;
     padding: 60px 40px;
     border-radius: 12px;
@@ -252,7 +252,7 @@ require_once 'includes/header.php';
     display: inline-block;
     padding: 15px 40px;
     background: white;
-    color: #667eea;
+    color: #228B22;
     border-radius: 8px;
     font-size: 16px;
     font-weight: 600;
@@ -273,7 +273,7 @@ require_once 'includes/header.php';
 
 .cta-button.secondary:hover {
     background: white;
-    color: #667eea;
+    color: #228B22;
 }
 
 .testimonial-section {
@@ -324,7 +324,7 @@ require_once 'includes/header.php';
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #228B22 0%, #2F4F4F 100%);
     display: flex;
     align-items: center;
     justify-content: center;

@@ -60,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         body {
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #228B22 0%, #2F4F4F 100%);
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -123,7 +123,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             width: 80px;
             height: 80px;
             margin: 0 auto 20px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #228B22 0%, #2F4F4F 100%);
             border-radius: 20px;
             display: flex;
             align-items: center;
@@ -138,7 +138,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             font-weight: 700;
             color: #333;
             margin-bottom: 8px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #228B22 0%, #2F4F4F 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -215,14 +215,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         .input-icon input:focus {
             outline: none;
-            border-color: #667eea;
+            border-color: #228B22;
             background: white;
             box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
         }
 
         .input-icon input:focus + i,
         .input-icon:focus-within i {
-            color: #667eea;
+            color: #228B22;
         }
 
         .btn {
@@ -243,7 +243,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #228B22 0%, #2F4F4F 100%);
             color: white;
             box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
         }
@@ -273,7 +273,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         .back-to-site a {
-            color: #667eea;
+            color: #228B22;
             text-decoration: none;
             font-size: 14px;
             font-weight: 500;

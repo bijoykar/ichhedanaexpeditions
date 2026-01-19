@@ -9,7 +9,7 @@ require_once 'includes/header.php';
 
 <style>
 .page-header {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #228B22 0%, #2F4F4F 100%);
     padding: 80px 0 60px;
     text-align: center;
     color: white;
@@ -42,7 +42,7 @@ require_once 'includes/header.php';
     color: #1a1a1a;
     margin-bottom: 20px;
     padding-bottom: 15px;
-    border-bottom: 3px solid #667eea;
+    border-bottom: 3px solid #228B22;
 }
 
 .privacy-section h3 {
@@ -78,14 +78,14 @@ require_once 'includes/header.php';
 
 .highlight-box {
     background: #f3f4f6;
-    border-left: 4px solid #667eea;
+    border-left: 4px solid #228B22;
     padding: 20px 25px;
     margin: 25px 0;
     border-radius: 8px;
 }
 
 .contact-box {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #228B22 0%, #2F4F4F 100%);
     color: white;
     padding: 40px;
     border-radius: 12px;
@@ -107,7 +107,7 @@ require_once 'includes/header.php';
 .contact-box a {
     display: inline-block;
     background: white;
-    color: #667eea;
+    color: #228B22;
     padding: 12px 30px;
     border-radius: 8px;
     font-weight: 600;

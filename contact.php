@@ -218,7 +218,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <style>
 /* Modern Page Header */
 .page-header-modern {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #228B22 0%, #2F4F4F 100%);
     padding: 100px 0 80px;
     position: relative;
     overflow: hidden;
@@ -324,7 +324,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #228B22 0%, #2F4F4F 100%);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -347,19 +347,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 .info-content a {
-    color: #667eea;
+    color: #228B22;
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
 .info-content a:hover {
-    color: #764ba2;
+    color: #2F4F4F;
 }
 
 /* Social Section */
 .social-section {
     padding: 25px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #228B22 0%, #2F4F4F 100%);
     border-radius: 15px;
     text-align: center;
 }
@@ -493,7 +493,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 .form-group-modern label i {
-    color: #667eea;
+    color: #228B22;
 }
 
 .form-input-modern,
@@ -510,7 +510,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 .form-input-modern:focus,
 .form-textarea-modern:focus {
     outline: none;
-    border-color: #667eea;
+    border-color: #228B22;
     box-shadow: 0 0 0 4px rgba(102,126,234,0.1);
 }
 
@@ -526,7 +526,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 .btn-submit-modern {
     width: 100%;
     padding: 16px 30px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #228B22 0%, #2F4F4F 100%);
     color: white;
     border: none;
     border-radius: 10px;

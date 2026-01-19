@@ -179,7 +179,7 @@ $tours = $result['data'];
 <style>
 /* Modern Tours Header */
 .modern-tours-header {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #228B22 0%, #2F4F4F 100%);
     padding: 100px 0 120px;
     position: relative;
     overflow: hidden;
@@ -269,7 +269,7 @@ $tours = $result['data'];
 }
 
 .filter-header h3 i {
-    color: #667eea;
+    color: #228B22;
     margin-right: 10px;
 }
 
@@ -294,7 +294,7 @@ $tours = $result['data'];
 }
 
 .filter-group label i {
-    color: #667eea;
+    color: #228B22;
     margin-right: 6px;
 }
 
@@ -311,12 +311,12 @@ $tours = $result['data'];
 }
 
 .filter-group select:hover {
-    border-color: #667eea;
+    border-color: #228B22;
 }
 
 .filter-group select:focus {
     outline: none;
-    border-color: #667eea;
+    border-color: #228B22;
     box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
@@ -376,7 +376,7 @@ $tours = $result['data'];
     position: relative;
     height: 280px;
     overflow: hidden;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #228B22 0%, #2F4F4F 100%);
 }
 
 .tour-card-image img {
@@ -406,7 +406,7 @@ $tours = $result['data'];
     top: 20px;
     right: 20px;
     background: rgba(255,255,255,0.95);
-    color: #667eea;
+    color: #228B22;
     padding: 8px 16px;
     border-radius: 20px;
     font-size: 13px;
@@ -439,7 +439,7 @@ $tours = $result['data'];
 
 .view-details-btn {
     background: white;
-    color: #667eea;
+    color: #228B22;
     border: none;
     padding: 14px 32px;
     border-radius: 30px;
@@ -488,7 +488,7 @@ $tours = $result['data'];
 }
 
 .meta-item i {
-    color: #667eea;
+    color: #228B22;
     font-size: 16px;
 }
 
@@ -521,14 +521,14 @@ $tours = $result['data'];
 .price-amount {
     font-size: 26px;
     font-weight: 700;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #228B22 0%, #2F4F4F 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
 }
 
 .tour-details-btn {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #228B22 0%, #2F4F4F 100%);
     color: white;
     border: none;
     padding: 12px 28px;
@@ -654,7 +654,7 @@ $tours = $result['data'];
 .modal-loading {
     text-align: center;
     padding: 60px 20px;
-    color: #667eea;
+    color: #228B22;
 }
 
 .modal-loading i {
@@ -751,28 +751,28 @@ function openTourModal(tourId) {
             <h2 style="font-size: 32px; color: #2d3748; margin-bottom: 15px; font-weight: 700;">${tour.title}</h2>
             <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; margin-bottom: 20px;">
                 <div style="display: flex; align-items: center; gap: 8px; color: #64748b;">
-                    <i class="far fa-calendar-alt" style="color: #667eea;"></i>
+                    <i class="far fa-calendar-alt" style="color: #228B22;"></i>
                     <span>${formatDate(tour.start_date)} - ${formatDate(tour.end_date)}</span>
                 </div>
                 <div style="display: flex; align-items: center; gap: 8px; color: #64748b;">
-                    <i class="far fa-clock" style="color: #667eea;"></i>
+                    <i class="far fa-clock" style="color: #228B22;"></i>
                     <span>${tour.duration_nights} Nights / ${tour.duration_days} Days</span>
                 </div>
                 <div style="display: flex; align-items: center; gap: 8px; color: #64748b;">
-                    <i class="fas fa-users" style="color: #667eea;"></i>
+                    <i class="fas fa-users" style="color: #228B22;"></i>
                     <span>Max ${tour.max_participants} participants</span>
                 </div>
                 <div style="display: flex; align-items: center; gap: 8px; color: #64748b;">
-                    <i class="fas fa-signal" style="color: #667eea;"></i>
+                    <i class="fas fa-signal" style="color: #228B22;"></i>
                     <span style="text-transform: capitalize;">${tour.difficulty_level}</span>
                 </div>
             </div>
-            ${tour.price ? `<div style="font-size: 32px; font-weight: 700; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">₹${formatPrice(tour.price)}</div>` : ''}
+            ${tour.price ? `<div style="font-size: 32px; font-weight: 700; background: linear-gradient(135deg, #228B22 0%, #2F4F4F 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">₹${formatPrice(tour.price)}</div>` : ''}
         </div>
         
         <div class="modal-section" style="margin-bottom: 35px;">
             <h3 style="font-size: 24px; color: #2d3748; margin-bottom: 15px; font-weight: 600; display: flex; align-items: center; gap: 10px;">
-                <i class="fas fa-info-circle" style="color: #667eea;"></i> Overview
+                <i class="fas fa-info-circle" style="color: #228B22;"></i> Overview
             </h3>
             <p style="color: #475569; line-height: 1.8; font-size: 15px;">${tour.full_description}</p>
         </div>
@@ -780,9 +780,9 @@ function openTourModal(tourId) {
         ${tour.itinerary ? `
         <div class="modal-section" style="margin-bottom: 35px;">
             <h3 style="font-size: 24px; color: #2d3748; margin-bottom: 20px; font-weight: 600; display: flex; align-items: center; gap: 10px;">
-                <i class="fas fa-route" style="color: #667eea;"></i> Itinerary
+                <i class="fas fa-route" style="color: #228B22;"></i> Itinerary
             </h3>
-            <div style="background: #f8f9fa; padding: 25px; border-radius: 12px; border-left: 4px solid #667eea;">
+            <div style="background: #f8f9fa; padding: 25px; border-radius: 12px; border-left: 4px solid #228B22;">
                 ${formatItinerary(tour.itinerary)}
             </div>
         </div>
@@ -791,7 +791,7 @@ function openTourModal(tourId) {
         ${tour.photography_highlights ? `
         <div class="modal-section" style="margin-bottom: 35px;">
             <h3 style="font-size: 24px; color: #2d3748; margin-bottom: 20px; font-weight: 600; display: flex; align-items: center; gap: 10px;">
-                <i class="fas fa-camera" style="color: #667eea;"></i> Photography Highlights
+                <i class="fas fa-camera" style="color: #228B22;"></i> Photography Highlights
             </h3>
             <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px;">
                 ${formatHighlights(tour.photography_highlights)}
@@ -822,16 +822,16 @@ function openTourModal(tourId) {
         ${tour.accommodation_details ? `
         <div class="modal-section" style="margin-bottom: 35px;">
             <h3 style="font-size: 24px; color: #2d3748; margin-bottom: 15px; font-weight: 600; display: flex; align-items: center; gap: 10px;">
-                <i class="fas fa-hotel" style="color: #667eea;"></i> Accommodation
+                <i class="fas fa-hotel" style="color: #228B22;"></i> Accommodation
             </h3>
             <p style="color: #475569; line-height: 1.8; font-size: 15px; background: #f8f9fa; padding: 20px; border-radius: 12px;">${tour.accommodation_details}</p>
         </div>
         ` : ''}
         
-        <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 30px; border-radius: 15px; text-align: center; color: white;">
+        <div style="background: linear-gradient(135deg, #228B22 0%, #2F4F4F 100%); padding: 30px; border-radius: 15px; text-align: center; color: white;">
             <h3 style="font-size: 22px; margin-bottom: 15px; font-weight: 600;">Ready to Join This Expedition?</h3>
             <p style="margin-bottom: 20px; opacity: 0.95;">Contact us to book your spot or get more information</p>
-            <a href="<?php echo SITE_URL; ?>/contact.php" style="display: inline-block; background: white; color: #667eea; padding: 14px 35px; border-radius: 30px; font-weight: 600; text-decoration: none; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.2);" onmouseover="this.style.transform='translateY(-3px)'" onmouseout="this.style.transform='translateY(0)'">
+            <a href="<?php echo SITE_URL; ?>/contact.php" style="display: inline-block; background: white; color: #228B22; padding: 14px 35px; border-radius: 30px; font-weight: 600; text-decoration: none; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.2);" onmouseover="this.style.transform='translateY(-3px)'" onmouseout="this.style.transform='translateY(0)'">
                 <i class="fas fa-envelope"></i> Contact Us
             </a>
         </div>
@@ -872,8 +872,8 @@ function formatItinerary(itinerary) {
 function formatHighlights(highlights) {
     const items = highlights.split(',').map(h => h.trim()).filter(h => h);
     return items.map(item => `
-        <div style="background: white; padding: 15px; border-radius: 10px; display: flex; align-items: center; gap: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); border-left: 3px solid #667eea;">
-            <i class="fas fa-camera-retro" style="color: #667eea; font-size: 18px;"></i>
+        <div style="background: white; padding: 15px; border-radius: 10px; display: flex; align-items: center; gap: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); border-left: 3px solid #228B22;">
+            <i class="fas fa-camera-retro" style="color: #228B22; font-size: 18px;"></i>
             <span style="color: #2d3748; font-size: 14px;">${item}</span>
         </div>
     `).join('');

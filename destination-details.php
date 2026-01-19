@@ -137,7 +137,7 @@ $destinationTours = $tourModel->getByDestination($destination['id'], 6);
 .modern-dest-info-icon {
     width: 50px;
     height: 50px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #228B22 0%, #2F4F4F 100%);
     border-radius: 12px;
     display: flex;
     align-items: center;
@@ -196,14 +196,14 @@ $destinationTours = $tourModel->getByDestination($destination['id'], 6);
     font-weight: 700;
     margin-bottom: 25px;
     padding-bottom: 15px;
-    border-bottom: 3px solid #667eea;
+    border-bottom: 3px solid #228B22;
     display: flex;
     align-items: center;
     gap: 12px;
 }
 
 .modern-dest-content-section h2 i {
-    color: #667eea;
+    color: #228B22;
 }
 
 .modern-dest-content-section p {
@@ -233,7 +233,7 @@ $destinationTours = $tourModel->getByDestination($destination['id'], 6);
     font-weight: 900;
     position: absolute;
     left: 0;
-    color: #667eea;
+    color: #228B22;
     font-size: 0.9rem;
 }
 
@@ -265,7 +265,7 @@ $destinationTours = $tourModel->getByDestination($destination['id'], 6);
 }
 
 .modern-dest-sidebar-card h3 i {
-    color: #667eea;
+    color: #228B22;
 }
 
 .modern-dest-facts-list {
@@ -308,7 +308,7 @@ $destinationTours = $tourModel->getByDestination($destination['id'], 6);
 }
 
 .modern-dest-tour-item:hover {
-    border-color: #667eea;
+    border-color: #228B22;
     background: white;
     transform: translateX(5px);
 }
@@ -331,7 +331,7 @@ $destinationTours = $tourModel->getByDestination($destination['id'], 6);
 }
 
 .modern-dest-tour-item p i {
-    color: #667eea;
+    color: #228B22;
 }
 
 .modern-dest-tour-item .btn {
@@ -339,7 +339,7 @@ $destinationTours = $tourModel->getByDestination($destination['id'], 6);
     align-items: center;
     gap: 8px;
     padding: 10px 20px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #228B22 0%, #2F4F4F 100%);
     color: white;
     text-decoration: none;
     border-radius: 10px;
@@ -367,7 +367,7 @@ $destinationTours = $tourModel->getByDestination($destination['id'], 6);
     gap: 10px;
     width: 100%;
     padding: 14px 24px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #228B22 0%, #2F4F4F 100%);
     color: white;
     text-decoration: none;
     border-radius: 12px;
@@ -387,7 +387,7 @@ $destinationTours = $tourModel->getByDestination($destination['id'], 6);
     gap: 10px;
     padding: 12px 24px;
     background: white;
-    color: #667eea;
+    color: #228B22;
     text-decoration: none;
     border-radius: 12px;
     font-weight: 600;

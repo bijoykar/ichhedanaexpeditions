@@ -131,7 +131,7 @@ if ($category) {
 <style>
 /* Modern Page Header */
 .page-header-gallery {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #228B22 0%, #2F4F4F 100%);
     padding: 100px 0 80px;
     position: relative;
     overflow: hidden;
@@ -211,7 +211,7 @@ if ($category) {
 }
 
 .filter-label i {
-    color: #667eea;
+    color: #228B22;
 }
 
 .filter-buttons {
@@ -238,15 +238,15 @@ if ($category) {
 
 .filter-btn-modern:hover {
     background: linear-gradient(135deg, #e9ecef 0%, #dee2e6 100%);
-    border-color: #667eea;
-    color: #667eea;
+    border-color: #228B22;
+    color: #228B22;
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(102,126,234,0.2);
 }
 
 .filter-btn-modern.active {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    border-color: #667eea;
+    background: linear-gradient(135deg, #228B22 0%, #2F4F4F 100%);
+    border-color: #228B22;
     color: white;
     box-shadow: 0 8px 20px rgba(102,126,234,0.3);
 }
@@ -373,7 +373,7 @@ if ($category) {
 
 .no-data-message i {
     font-size: 80px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #228B22 0%, #2F4F4F 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;

@@ -32,7 +32,7 @@ if ($blog['category']) {
 
 <style>
 .modern-blog-detail-header {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #228B22 0%, #2F4F4F 100%);
     padding: 140px 0 60px;
     position: relative;
     overflow: hidden;
@@ -168,7 +168,7 @@ if ($blog['category']) {
     margin-top: 40px;
     margin-bottom: 20px;
     padding-bottom: 15px;
-    border-bottom: 3px solid #667eea;
+    border-bottom: 3px solid #228B22;
 }
 
 .modern-blog-content h3 {
@@ -195,13 +195,13 @@ if ($blog['category']) {
 }
 
 .modern-blog-content li strong {
-    color: #667eea;
+    color: #228B22;
     font-weight: 600;
 }
 
 .modern-blog-content blockquote {
     background: #f8f9fa;
-    border-left: 4px solid #667eea;
+    border-left: 4px solid #228B22;
     padding: 25px 30px;
     margin: 30px 0;
     border-radius: 0 12px 12px 0;
@@ -226,7 +226,7 @@ if ($blog['category']) {
 }
 
 .modern-blog-share-title i {
-    color: #667eea;
+    color: #228B22;
 }
 
 .modern-social-share {
@@ -266,7 +266,7 @@ if ($blog['category']) {
 }
 
 .modern-share-btn.email {
-    background: #667eea;
+    background: #228B22;
 }
 
 .modern-related-posts {
@@ -285,7 +285,7 @@ if ($blog['category']) {
 }
 
 .modern-related-title i {
-    color: #667eea;
+    color: #228B22;
 }
 
 .modern-related-grid {
@@ -305,7 +305,7 @@ if ($blog['category']) {
 }
 
 .modern-related-card:hover {
-    border-color: #667eea;
+    border-color: #228B22;
     transform: translateY(-5px);
     box-shadow: 0 10px 30px rgba(102,126,234,0.2);
 }
@@ -371,7 +371,7 @@ if ($blog['category']) {
 }
 
 .modern-sidebar-card h3 i {
-    color: #667eea;
+    color: #228B22;
     font-size: 1.3rem;
 }
 
@@ -396,7 +396,7 @@ if ($blog['category']) {
 }
 
 .modern-post-info li i {
-    color: #667eea;
+    color: #228B22;
     font-size: 1.1rem;
     width: 20px;
 }
@@ -429,7 +429,7 @@ if ($blog['category']) {
 }
 
 .modern-sidebar-btn.primary {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #228B22 0%, #2F4F4F 100%);
     color: white;
 }
 
@@ -440,12 +440,12 @@ if ($blog['category']) {
 
 .modern-sidebar-btn.outline {
     background: transparent;
-    border: 2px solid #667eea;
-    color: #667eea;
+    border: 2px solid #228B22;
+    color: #228B22;
 }
 
 .modern-sidebar-btn.outline:hover {
-    background: #667eea;
+    background: #228B22;
     color: white;
 }
 
@@ -455,7 +455,7 @@ if ($blog['category']) {
     gap: 10px;
     padding: 12px 24px;
     background: white;
-    color: #667eea;
+    color: #228B22;
     text-decoration: none;
     border-radius: 12px;
     font-weight: 600;

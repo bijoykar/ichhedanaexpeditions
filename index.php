@@ -59,7 +59,7 @@ $heroImages = $galleryModel->getCarouselImages(5); // Get carousel images ordere
             <?php endforeach; ?>
         <?php else: ?>
             <!-- Fallback if no gallery images -->
-            <div class="hero-slide active" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+            <div class="hero-slide active" style="background: linear-gradient(135deg, #228B22 0%, #2F4F4F 100%);">
                 <div class="hero-content">
                     <div class="container">
                         <h1 class="hero-title animate-fade-in">Wildlife Photography Tours & Expeditions</h1>
@@ -205,7 +205,7 @@ $heroImages = $galleryModel->getCarouselImages(5); // Get carousel images ordere
 
 .btn-hero-primary {
     background: white;
-    color: #667eea;
+    color: #228B22;
     box-shadow: 0 8px 25px rgba(0,0,0,0.2);
 }
 
@@ -224,7 +224,7 @@ $heroImages = $galleryModel->getCarouselImages(5); // Get carousel images ordere
 
 .btn-hero-outline:hover {
     background: white;
-    color: #667eea;
+    color: #228B22;
     border-color: white;
     transform: translateY(-3px);
 }
@@ -598,7 +598,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <style>
 /* Modern Stats Section */
 .modern-stats-section {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #228B22 0%, #2F4F4F 100%);
     padding: 80px 0;
     margin-top: -80px;
     position: relative;
@@ -686,7 +686,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         <img src="<?php echo UPLOAD_URL . '/tours/' . $tour['featured_image']; ?>" 
                              alt="<?php echo htmlspecialchars($tour['title']); ?>">
                         <?php else: ?>
-                        <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 48px;">
+                        <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #228B22 0%, #2F4F4F 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 48px;">
                             <i class="fas fa-camera"></i>
                         </div>
                         <?php endif; ?>
@@ -869,7 +869,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                     }
                                 }
                                 // Generate color based on name
-                                $colors = ['#667eea', '#764ba2', '#f093fb', '#4facfe', '#43e97b', '#fa709a', '#30cfd0', '#a8edea'];
+                                $colors = ['#228B22', '#2F4F4F', '#f093fb', '#4facfe', '#43e97b', '#fa709a', '#30cfd0', '#a8edea'];
                                 $colorIndex = ord($initials[0]) % count($colors);
                                 $bgColor = $colors[$colorIndex];
                             ?>
@@ -945,7 +945,7 @@ document.addEventListener('DOMContentLoaded', function() {
     align-items: center;
     gap: 8px;
     background: linear-gradient(135deg, rgba(102,126,234,0.1) 0%, rgba(118,75,162,0.1) 100%);
-    color: #667eea;
+    color: #228B22;
     padding: 10px 24px;
     border-radius: 30px;
     font-size: 14px;
@@ -974,7 +974,7 @@ document.addEventListener('DOMContentLoaded', function() {
     align-items: center;
     gap: 12px;
     padding: 16px 40px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #228B22 0%, #2F4F4F 100%);
     color: white;
     border-radius: 50px;
     font-size: 16px;
@@ -1019,7 +1019,7 @@ document.addEventListener('DOMContentLoaded', function() {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #228B22 0%, #2F4F4F 100%);
     z-index: 1;
 }
 
@@ -1088,7 +1088,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 .btn-cta-white {
     background: white;
-    color: #667eea;
+    color: #228B22;
     box-shadow: 0 8px 25px rgba(0,0,0,0.2);
 }
 
@@ -1106,7 +1106,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 .btn-cta-outline:hover {
     background: white;
-    color: #667eea;
+    color: #228B22;
     border-color: white;
     transform: translateY(-3px);
 }

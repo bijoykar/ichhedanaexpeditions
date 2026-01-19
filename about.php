@@ -232,7 +232,7 @@ require_once __DIR__ . '/includes/header.php';
 <style>
 /* Wings of Desire Hero Section */
 .wings-of-desire-hero {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #228B22 0%, #2F4F4F 100%);
     padding: 80px 0;
     text-align: center;
     position: relative;
@@ -313,7 +313,7 @@ require_once __DIR__ . '/includes/header.php';
     left: 0;
     right: 0;
     height: 5px;
-    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(90deg, #228B22 0%, #2F4F4F 100%);
     transition: height 0.4s ease;
 }
 
@@ -341,7 +341,7 @@ require_once __DIR__ . '/includes/header.php';
 .card-icon {
     font-size: 48px;
     margin-bottom: 25px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #228B22 0%, #2F4F4F 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -382,7 +382,7 @@ require_once __DIR__ . '/includes/header.php';
 }
 
 .card-content strong {
-    color: #667eea;
+    color: #228B22;
     font-weight: 600;
 }
 

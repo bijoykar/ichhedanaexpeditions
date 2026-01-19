@@ -123,7 +123,7 @@ require_once __DIR__ . '/includes/header.php';
                                     }
                                 }
                                 // Generate color based on name
-                                $colors = ['#667eea', '#764ba2', '#f093fb', '#4facfe', '#43e97b', '#fa709a', '#30cfd0', '#a8edea'];
+                                $colors = ['#228B22', '#2F4F4F', '#f093fb', '#4facfe', '#43e97b', '#fa709a', '#30cfd0', '#a8edea'];
                                 $colorIndex = ord($initials[0]) % count($colors);
                                 $bgColor = $colors[$colorIndex];
                             ?>
@@ -277,7 +277,7 @@ require_once __DIR__ . '/includes/header.php';
 
 <style>
 .page-header {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #228B22 0%, #2F4F4F 100%);
     color: white;
     padding: 80px 0 60px;
     text-align: center;
@@ -380,7 +380,7 @@ require_once __DIR__ . '/includes/header.php';
 .avatar-placeholder {
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #228B22 0%, #2F4F4F 100%);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -431,7 +431,7 @@ require_once __DIR__ . '/includes/header.php';
 .read-more-btn {
     background: none;
     border: none;
-    color: #667eea;
+    color: #228B22;
     font-weight: 600;
     cursor: pointer;
     padding: 0;
@@ -558,7 +558,7 @@ require_once __DIR__ . '/includes/header.php';
 
 .form-control:focus {
     outline: none;
-    border-color: #667eea;
+    border-color: #228B22;
 }
 
 .file-upload-wrapper {
@@ -583,13 +583,13 @@ require_once __DIR__ . '/includes/header.php';
 }
 
 .file-upload-label:hover {
-    border-color: #667eea;
+    border-color: #228B22;
     background: #f0f0ff;
 }
 
 .file-upload-label i {
     font-size: 36px;
-    color: #667eea;
+    color: #228B22;
     margin-bottom: 10px;
 }
 

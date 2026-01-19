@@ -78,7 +78,7 @@ $countries = $countriesStmt->fetchAll(PDO::FETCH_COLUMN);
 
 <style>
 .modern-destinations-header {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #228B22 0%, #2F4F4F 100%);
     padding: 140px 0 80px;
     position: relative;
     overflow: hidden;
@@ -221,7 +221,7 @@ $countries = $countriesStmt->fetchAll(PDO::FETCH_COLUMN);
     gap: 8px;
     padding: 10px 20px;
     background: white;
-    color: #667eea;
+    color: #228B22;
     text-decoration: none;
     border-radius: 10px;
     font-weight: 600;
@@ -230,7 +230,7 @@ $countries = $countriesStmt->fetchAll(PDO::FETCH_COLUMN);
 }
 
 .modern-destination-overlay .btn:hover {
-    background: #667eea;
+    background: #228B22;
     color: white;
     transform: translateX(5px);
 }
@@ -276,7 +276,7 @@ $countries = $countriesStmt->fetchAll(PDO::FETCH_COLUMN);
 }
 
 .modern-destination-location i {
-    color: #667eea;
+    color: #228B22;
     font-size: 1.1rem;
 }
 
@@ -309,7 +309,7 @@ $countries = $countriesStmt->fetchAll(PDO::FETCH_COLUMN);
 }
 
 .modern-destination-meta-item i {
-    color: #667eea;
+    color: #228B22;
 }
 
 .modern-destination-btn {
@@ -319,7 +319,7 @@ $countries = $countriesStmt->fetchAll(PDO::FETCH_COLUMN);
     gap: 10px;
     width: 100%;
     padding: 14px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #228B22 0%, #2F4F4F 100%);
     color: white;
     text-decoration: none;
     border-radius: 12px;
@@ -342,7 +342,7 @@ $countries = $countriesStmt->fetchAll(PDO::FETCH_COLUMN);
 
 .modern-no-destinations i {
     font-size: 5rem;
-    color: #667eea;
+    color: #228B22;
     margin-bottom: 30px;
     opacity: 0.6;
 }
@@ -384,13 +384,13 @@ $countries = $countriesStmt->fetchAll(PDO::FETCH_COLUMN);
 }
 
 .modern-pagination a:hover {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #228B22 0%, #2F4F4F 100%);
     color: white;
     transform: translateY(-2px);
 }
 
 .modern-pagination .active {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #228B22 0%, #2F4F4F 100%);
     color: white;
 }
 
@@ -471,7 +471,7 @@ $countries = $countriesStmt->fetchAll(PDO::FETCH_COLUMN);
                 </div>
                 
                 <div style="display: flex; gap: 12px;">
-                    <button type="submit" class="btn" style="padding: 12px 30px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; border-radius: 12px; font-weight: 600; cursor: pointer; transition: all 0.3s ease;">
+                    <button type="submit" class="btn" style="padding: 12px 30px; background: linear-gradient(135deg, #228B22 0%, #2F4F4F 100%); color: white; border: none; border-radius: 12px; font-weight: 600; cursor: pointer; transition: all 0.3s ease;">
                         <i class="fas fa-filter"></i> Apply Filter
                     </button>
                     <?php if ($countryFilter || $searchQuery): ?>

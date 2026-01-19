@@ -113,7 +113,7 @@ $users = $db->query("SELECT * FROM admin_users ORDER BY created_at DESC")->fetch
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #228B22 0%, #2F4F4F 100%);
     color: white;
 }
 
@@ -212,7 +212,7 @@ $users = $db->query("SELECT * FROM admin_users ORDER BY created_at DESC")->fetch
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #228B22 0%, #2F4F4F 100%);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -334,7 +334,7 @@ $users = $db->query("SELECT * FROM admin_users ORDER BY created_at DESC")->fetch
 .form-group input:focus,
 .form-group select:focus {
     outline: none;
-    border-color: #667eea;
+    border-color: #228B22;
     box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 

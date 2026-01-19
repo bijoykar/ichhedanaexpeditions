@@ -121,7 +121,7 @@ $destinations = $destinationModel->all();
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #228B22 0%, #2F4F4F 100%);
     color: white;
 }
 
@@ -229,7 +229,7 @@ $destinations = $destinationModel->all();
 
 .stat-card-icon.purple {
     background: rgba(102, 126, 234, 0.1);
-    color: #667eea;
+    color: #228B22;
 }
 
 .stat-card-icon.green {
@@ -313,7 +313,7 @@ $destinations = $destinationModel->all();
     width: 100%;
     height: 220px;
     overflow: hidden;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #228B22 0%, #2F4F4F 100%);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -432,7 +432,7 @@ $destinations = $destinationModel->all();
 }
 
 .gallery-meta-item i {
-    color: #667eea;
+    color: #228B22;
     width: 14px;
 }
 

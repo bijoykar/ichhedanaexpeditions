@@ -19,7 +19,7 @@ $blogs = $blogModel->where(['status' => 'published'], 'created_at DESC', 100);
 
 <style>
 .page-header {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #228B22 0%, #2F4F4F 100%);
     padding: 80px 0 60px;
     text-align: center;
     color: white;
@@ -62,7 +62,7 @@ $blogs = $blogModel->where(['status' => 'published'], 'created_at DESC', 100);
     margin-bottom: 20px;
     color: #1a1a1a;
     padding-bottom: 15px;
-    border-bottom: 3px solid #667eea;
+    border-bottom: 3px solid #228B22;
 }
 
 .sitemap-section ul {
@@ -87,7 +87,7 @@ $blogs = $blogModel->where(['status' => 'published'], 'created_at DESC', 100);
 }
 
 .sitemap-section ul li a:hover {
-    color: #667eea;
+    color: #228B22;
     padding-left: 10px;
 }
 
@@ -109,7 +109,7 @@ $blogs = $blogModel->where(['status' => 'published'], 'created_at DESC', 100);
 .section-icon {
     width: 50px;
     height: 50px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #228B22 0%, #2F4F4F 100%);
     border-radius: 10px;
     display: flex;
     align-items: center;

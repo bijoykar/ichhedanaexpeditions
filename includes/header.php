@@ -133,7 +133,7 @@ if (MAINTENANCE_MODE && !isLoggedIn()) {
     
     /* Add padding to prevent content from hiding behind fixed header */
     body > *:first-child:not(.modern-site-header) {
-        padding-top: 140px;
+        padding-top: 90px;
     }
     
     * {
@@ -159,7 +159,8 @@ if (MAINTENANCE_MODE && !isLoggedIn()) {
     
     /* Modern Top Bar */
     .modern-top-bar {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        display: none;
+        background: linear-gradient(135deg, #228B22 0%, #2F4F4F 100%);
         padding: 12px 0;
         font-size: 13px;
     }
@@ -229,13 +230,13 @@ if (MAINTENANCE_MODE && !isLoggedIn()) {
     }
     
     .social-icon.group:hover {
-        color: #667eea;
+        color: #228B22;
     }
     
     /* Modern Main Nav */
     .modern-main-nav {
         padding: 18px 0;
-        background: white;
+        background: linear-gradient(135deg, #228B22 0%, #2F4F4F 100%);
     }
     
     .modern-nav-wrapper {
@@ -257,12 +258,12 @@ if (MAINTENANCE_MODE && !isLoggedIn()) {
         height: 65px;
         width: auto;
         display: block;
-        filter: brightness(0) saturate(100%) invert(37%) sepia(89%) saturate(1785%) hue-rotate(233deg) brightness(95%) contrast(93%);
+        filter: brightness(0) saturate(100%) invert(100%);
         transition: filter 0.3s ease;
     }
     
     .modern-logo a:hover img {
-        filter: brightness(0) saturate(100%) invert(28%) sepia(94%) saturate(2095%) hue-rotate(258deg) brightness(89%) contrast(95%);
+        filter: brightness(0) saturate(100%) invert(100%) opacity(0.8);
     }
     
     .modern-nav-menu {
@@ -278,7 +279,7 @@ if (MAINTENANCE_MODE && !isLoggedIn()) {
         align-items: center;
         gap: 8px;
         padding: 12px 18px;
-        color: #2d3748;
+        color: white;
         text-decoration: none;
         font-weight: 500;
         font-size: 15px;
@@ -289,20 +290,20 @@ if (MAINTENANCE_MODE && !isLoggedIn()) {
     
     .modern-nav-menu li a i {
         font-size: 16px;
-        color: #667eea;
+        color: rgba(255,255,255,0.9);
         transition: all 0.3s ease;
     }
     
     .modern-nav-menu li a:hover {
-        background: linear-gradient(135deg, rgba(102,126,234,0.1) 0%, rgba(118,75,162,0.1) 100%);
-        color: #667eea;
+        background: rgba(255,255,255,0.2);
+        color: white;
         transform: translateY(-2px);
     }
     
     .modern-nav-menu li a.active {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: rgba(255,255,255,0.25);
         color: white;
-        box-shadow: 0 4px 15px rgba(102,126,234,0.3);
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
     }
     
     .modern-nav-menu li a.active i {
@@ -320,14 +321,14 @@ if (MAINTENANCE_MODE && !isLoggedIn()) {
     }
     
     .modern-mobile-toggle:hover {
-        background: rgba(102,126,234,0.1);
+        background: rgba(255,255,255,0.2);
     }
     
     .modern-mobile-toggle span {
         display: block;
         width: 28px;
         height: 3px;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: white;
         margin: 5px 0;
         border-radius: 2px;
         transition: all 0.3s ease;
@@ -411,17 +412,25 @@ if (MAINTENANCE_MODE && !isLoggedIn()) {
         }
         
         .modern-nav-menu li a:hover {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #228B22 0%, #2F4F4F 100%);
+            color: white;
+        }
+        
+        .modern-nav-menu li a:hover i {
             color: white;
         }
         
         .modern-nav-menu li a.active {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #228B22 0%, #2F4F4F 100%);
             color: white;
         }
         
         .modern-nav-menu li a i {
-            color: inherit;
+            color: #228B22;
+        }
+        
+        .modern-nav-menu li a.active i {
+            color: white;
         }
         
         .mobile-menu-backdrop {

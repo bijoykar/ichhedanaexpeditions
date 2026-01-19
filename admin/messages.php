@@ -102,7 +102,7 @@ $stats = $db->query($statsQuery)->fetch();
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #228B22 0%, #2F4F4F 100%);
     color: white;
 }
 
@@ -199,7 +199,7 @@ $stats = $db->query($statsQuery)->fetch();
 .stat-card .stat-value {
     font-size: 36px;
     font-weight: 700;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #228B22 0%, #2F4F4F 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -254,13 +254,13 @@ $stats = $db->query($statsQuery)->fetch();
 }
 
 .message-card.unread {
-    border-left: 4px solid #667eea;
+    border-left: 4px solid #228B22;
     background: #f9fafb;
 }
 
 .message-header {
     padding: 20px 25px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #228B22 0%, #2F4F4F 100%);
     color: white;
     display: flex;
     justify-content: space-between;

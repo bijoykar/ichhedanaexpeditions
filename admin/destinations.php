@@ -134,7 +134,7 @@ while ($row = $stmt->fetch()) {
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #228B22 0%, #2F4F4F 100%);
     color: white;
 }
 
@@ -229,7 +229,7 @@ while ($row = $stmt->fetch()) {
 
 .stat-card-icon.purple {
     background: rgba(102, 126, 234, 0.1);
-    color: #667eea;
+    color: #228B22;
 }
 
 .stat-card-icon.green {
@@ -277,7 +277,7 @@ while ($row = $stmt->fetch()) {
     width: 100%;
     height: 200px;
     object-fit: cover;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #228B22 0%, #2F4F4F 100%);
 }
 
 .destination-content {
@@ -314,7 +314,7 @@ while ($row = $stmt->fetch()) {
 }
 
 .destination-meta-item i {
-    color: #667eea;
+    color: #228B22;
     width: 16px;
 }
 

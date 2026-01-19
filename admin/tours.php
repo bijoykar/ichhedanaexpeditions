@@ -92,7 +92,7 @@ $destinations = $destinationModel->all();
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #228B22 0%, #2F4F4F 100%);
     color: white;
 }
 
@@ -293,7 +293,7 @@ $destinations = $destinationModel->all();
 }
 
 .tour-meta-item i {
-    color: #667eea;
+    color: #228B22;
     width: 14px;
 }
 
@@ -362,7 +362,7 @@ $destinations = $destinationModel->all();
 
 .stat-card-icon.purple {
     background: rgba(102, 126, 234, 0.1);
-    color: #667eea;
+    color: #228B22;
 }
 
 .stat-card-icon.green {
@@ -568,7 +568,7 @@ $destinations = $destinationModel->all();
                     </td>
                     <td>
                         <?php if ($tour['price']): ?>
-                        <strong style="color: #667eea;">₹<?php echo number_format($tour['price'], 0); ?></strong>
+                        <strong style="color: #228B22;">₹<?php echo number_format($tour['price'], 0); ?></strong>
                         <?php else: ?>
                         <span style="color: #9ca3af;">—</span>
                         <?php endif; ?>

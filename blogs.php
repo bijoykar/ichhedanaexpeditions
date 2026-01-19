@@ -22,7 +22,7 @@ $categories = $blogModel->getCategories();
 
 <style>
 .modern-blog-header {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #228B22 0%, #2F4F4F 100%);
     padding: 100px 0 80px;
     position: relative;
     overflow: hidden;
@@ -136,7 +136,7 @@ $categories = $blogModel->getCategories();
     position: absolute;
     top: 20px;
     right: 20px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #228B22 0%, #2F4F4F 100%);
     color: white;
     padding: 8px 18px;
     border-radius: 25px;
@@ -167,7 +167,7 @@ $categories = $blogModel->getCategories();
 }
 
 .modern-blog-meta-item i {
-    color: #667eea;
+    color: #228B22;
     font-size: 1rem;
 }
 
@@ -185,7 +185,7 @@ $categories = $blogModel->getCategories();
 }
 
 .modern-blog-title a:hover {
-    color: #667eea;
+    color: #228B22;
 }
 
 .modern-blog-excerpt {
@@ -203,7 +203,7 @@ $categories = $blogModel->getCategories();
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    color: #667eea;
+    color: #228B22;
     font-weight: 600;
     text-decoration: none;
     transition: all 0.3s ease;
@@ -211,7 +211,7 @@ $categories = $blogModel->getCategories();
 
 .modern-blog-read-more:hover {
     gap: 15px;
-    color: #764ba2;
+    color: #2F4F4F;
 }
 
 .modern-blog-read-more i {
@@ -247,7 +247,7 @@ $categories = $blogModel->getCategories();
 }
 
 .modern-sidebar-card h3 i {
-    color: #667eea;
+    color: #228B22;
 }
 
 .modern-category-list {
@@ -275,14 +275,14 @@ $categories = $blogModel->getCategories();
 
 .modern-category-item:hover,
 .modern-category-item.active {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #228B22 0%, #2F4F4F 100%);
     color: white;
     transform: translateX(5px);
 }
 
 .modern-category-count {
     background: rgba(102,126,234,0.2);
-    color: #667eea;
+    color: #228B22;
     padding: 4px 10px;
     border-radius: 20px;
     font-size: 0.85rem;
@@ -318,14 +318,14 @@ $categories = $blogModel->getCategories();
 
 .modern-newsletter-input:focus {
     outline: none;
-    border-color: #667eea;
+    border-color: #228B22;
     box-shadow: 0 0 0 4px rgba(102,126,234,0.1);
 }
 
 .modern-newsletter-btn {
     width: 100%;
     padding: 14px 24px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #228B22 0%, #2F4F4F 100%);
     color: white;
     border: none;
     border-radius: 12px;
@@ -350,7 +350,7 @@ $categories = $blogModel->getCategories();
 
 .modern-no-posts i {
     font-size: 5rem;
-    color: #667eea;
+    color: #228B22;
     margin-bottom: 25px;
     opacity: 0.6;
 }
@@ -372,7 +372,7 @@ $categories = $blogModel->getCategories();
     align-items: center;
     gap: 10px;
     padding: 14px 30px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #228B22 0%, #2F4F4F 100%);
     color: white;
     text-decoration: none;
     border-radius: 12px;
@@ -411,13 +411,13 @@ $categories = $blogModel->getCategories();
 }
 
 .modern-pagination a:hover {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #228B22 0%, #2F4F4F 100%);
     color: white;
     transform: translateY(-2px);
 }
 
 .modern-pagination .active {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #228B22 0%, #2F4F4F 100%);
     color: white;
 }
 

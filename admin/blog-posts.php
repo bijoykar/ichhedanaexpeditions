@@ -107,7 +107,7 @@ $categories = $blogModel->getCategories();
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #228B22 0%, #2F4F4F 100%);
     color: white;
 }
 
@@ -236,7 +236,7 @@ $categories = $blogModel->getCategories();
 
 .stat-card-icon.purple {
     background: rgba(102, 126, 234, 0.1);
-    color: #667eea;
+    color: #228B22;
 }
 
 .stat-card-icon.green {
@@ -313,7 +313,7 @@ $categories = $blogModel->getCategories();
     border-radius: 8px;
     object-fit: cover;
     flex-shrink: 0;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #228B22 0%, #2F4F4F 100%);
 }
 
 .post-details h4 {
@@ -372,7 +372,7 @@ $categories = $blogModel->getCategories();
 }
 
 .post-meta-item i {
-    color: #667eea;
+    color: #228B22;
     width: 14px;
 }
 
