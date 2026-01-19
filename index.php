@@ -599,8 +599,8 @@ document.addEventListener('DOMContentLoaded', function() {
 /* Modern Stats Section */
 .modern-stats-section {
     background: linear-gradient(135deg, #228B22 0%, #2F4F4F 100%);
-    padding: 80px 0;
-    margin-top: -80px;
+    padding: 50px 0;
+    margin-top: -50px;
     position: relative;
     z-index: 5;
 }
@@ -608,41 +608,41 @@ document.addEventListener('DOMContentLoaded', function() {
 .stats-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 40px;
+    gap: 20px;
 }
 
 .stat-item {
     text-align: center;
     color: white;
-    padding: 30px;
+    padding: 20px 15px;
     background: rgba(255,255,255,0.1);
     backdrop-filter: blur(10px);
-    border-radius: 20px;
+    border-radius: 15px;
     border: 1px solid rgba(255,255,255,0.2);
-    transition: all 0.4s ease;
+    transition: all 0.3s ease;
 }
 
 .stat-item:hover {
-    transform: translateY(-10px);
+    transform: translateY(-5px);
     background: rgba(255,255,255,0.15);
-    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
 }
 
 .stat-icon {
-    font-size: 48px;
-    margin-bottom: 20px;
+    font-size: 32px;
+    margin-bottom: 12px;
     opacity: 0.9;
 }
 
 .stat-number {
-    font-size: 48px;
+    font-size: 36px;
     font-weight: 700;
-    margin-bottom: 10px;
+    margin-bottom: 6px;
     line-height: 1;
 }
 
 .stat-label {
-    font-size: 16px;
+    font-size: 14px;
     opacity: 0.95;
     font-weight: 300;
 }
@@ -650,18 +650,48 @@ document.addEventListener('DOMContentLoaded', function() {
 @media (max-width: 992px) {
     .stats-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 25px;
+        gap: 15px;
+    }
+    
+    .stat-item {
+        padding: 18px 12px;
+    }
+    
+    .stat-icon {
+        font-size: 28px;
+    }
+    
+    .stat-number {
+        font-size: 32px;
     }
 }
 
 @media (max-width: 576px) {
     .stats-grid {
         grid-template-columns: 1fr;
+        gap: 12px;
     }
     
     .modern-stats-section {
-        padding: 60px 0;
-        margin-top: -60px;
+        padding: 40px 0;
+        margin-top: -40px;
+    }
+    
+    .stat-item {
+        padding: 16px 10px;
+    }
+    
+    .stat-icon {
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+    
+    .stat-number {
+        font-size: 28px;
+    }
+    
+    .stat-label {
+        font-size: 13px;
     }
 }
 
