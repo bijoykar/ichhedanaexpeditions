@@ -1,0 +1,32 @@
+# Configuration files
+.htaccess
+config/config.php
+
+# Environment files
+config/config.local.php
+config/config.prod.php
+
+# Uploads directory
+uploads/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Log files
+*.log
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
+*~
+
+# Cache
+cache/
