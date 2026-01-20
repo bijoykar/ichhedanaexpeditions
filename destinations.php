@@ -640,4 +640,38 @@ $countries = $countriesStmt->fetchAll(PDO::FETCH_COLUMN);
     </div>
 </section>
 
+<script>
+// Force video autoplay on iOS
+document.addEventListener('DOMContentLoaded', function() {
+    const video = document.querySelector('.header-video');
+    if (video) {
+        // Set volume to 0 (muted)
+        video.volume = 0;
+        video.muted = true;
+        
+        // Try to play the video
+        const playPromise = video.play();
+        
+        if (playPromise !== undefined) {
+            playPromise.then(() => {
+                // Autoplay started successfully
+                console.log('Video autoplay started');
+            }).catch(error => {
+                // Autoplay was prevented
+                console.log('Autoplay prevented, trying to play on user interaction');
+                
+                // Try to play on any user interaction
+                document.addEventListener('touchstart', function() {
+                    video.play();
+                }, { once: true });
+                
+                document.addEventListener('click', function() {
+                    video.play();
+                }, { once: true });
+            });
+        }
+    }
+});
+</script>
+
 <?php require_once __DIR__ . '/includes/footer.php'; ?>
