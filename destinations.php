@@ -95,6 +95,23 @@ $countries = $countriesStmt->fetchAll(PDO::FETCH_COLUMN);
     transform: translate(-50%, -50%);
     object-fit: cover;
     z-index: 0;
+    pointer-events: none;
+}
+
+.modern-destinations-header .header-video::-webkit-media-controls {
+    display: none !important;
+}
+
+.modern-destinations-header .header-video::-webkit-media-controls-panel {
+    display: none !important;
+}
+
+.modern-destinations-header .header-video::-webkit-media-controls-play-button {
+    display: none !important;
+}
+
+.modern-destinations-header .header-video::-webkit-media-controls-start-playback-button {
+    display: none !important;
 }
 
 .modern-destinations-header .header-overlay {
@@ -457,7 +474,7 @@ $countries = $countriesStmt->fetchAll(PDO::FETCH_COLUMN);
 
 <!-- Modern Destinations Header -->
 <section class="modern-destinations-header">
-    <video class="header-video" autoplay muted loop playsinline>
+    <video class="header-video" autoplay muted loop playsinline webkit-playsinline preload="auto">
         <source src="<?php echo ASSETS_URL; ?>/images/VIDEO-2026-01-17-18-22-17.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
