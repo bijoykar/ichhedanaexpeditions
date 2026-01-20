@@ -57,6 +57,25 @@ $heroImages = $galleryModel->getCarouselImages(5); // Get carousel images ordere
                 </div>
             </div>
             <?php endforeach; ?>
+            
+            <!-- Video Slide 
+            <div class="hero-slide hero-video-slide">
+                <video class="hero-video" autoplay muted loop playsinline>
+                    <source src="<?php echo ASSETS_URL; ?>/images/VIDEO-2026-01-17-18-22-17.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="hero-content">
+                    <div class="container">
+                        <h1 class="hero-title animate-fade-in">Experience Wildlife Like Never Before</h1>
+                        <p class="hero-subtitle animate-fade-in-delay">Join our immersive photography expeditions</p>
+                        <div class="hero-buttons animate-fade-in-delay-2">
+                            <a href="<?php echo SITE_URL; ?>/tours.php" class="btn-hero btn-hero-primary">
+                                <i class="fas fa-compass"></i> Explore Tours
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>-->
         <?php else: ?>
             <!-- Fallback if no gallery images -->
             <div class="hero-slide active" style="background: linear-gradient(135deg, #228B22 0%, #2F4F4F 100%);">
@@ -85,6 +104,8 @@ $heroImages = $galleryModel->getCarouselImages(5); // Get carousel images ordere
         <?php foreach ($heroImages as $index => $image): ?>
         <span class="modern-dot <?php echo $index === 0 ? 'active' : ''; ?>" onclick="currentSlide(<?php echo $index; ?>)"></span>
         <?php endforeach; ?>
+        <!-- Add dot for video slide 
+        <span class="modern-dot" onclick="currentSlide(<?php echo count($heroImages); ?>)"></span> -->
     </div>
     <?php endif; ?>
     
@@ -130,6 +151,30 @@ $heroImages = $galleryModel->getCarouselImages(5); // Get carousel images ordere
     opacity: 1;
     visibility: visible;
     z-index: 2;
+}
+
+/* Video Slide Styles */
+.hero-video-slide {
+    background: #000;
+}
+
+.hero-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+    z-index: 1;
+}
+
+.hero-video-slide .hero-content {
+    position: relative;
+    z-index: 3;
+    background: rgba(0, 0, 0, 0.3);
 }
 
 .hero-content {

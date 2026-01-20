@@ -84,6 +84,29 @@ $countries = $countriesStmt->fetchAll(PDO::FETCH_COLUMN);
     overflow: hidden;
 }
 
+.modern-destinations-header .header-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+    z-index: 0;
+}
+
+.modern-destinations-header .header-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
 .modern-destinations-header::before {
     content: '';
     position: absolute;
@@ -92,12 +115,13 @@ $countries = $countriesStmt->fetchAll(PDO::FETCH_COLUMN);
     right: 0;
     bottom: 0;
     background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M 100 0 L 0 0 0 100" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
-    opacity: 0.3;
+    opacity: 0.2;
+    z-index: 1;
 }
 
 .modern-destinations-header .container {
     position: relative;
-    z-index: 1;
+    z-index: 2;
     text-align: center;
 }
 
@@ -125,6 +149,7 @@ $countries = $countriesStmt->fetchAll(PDO::FETCH_COLUMN);
     font-weight: 700;
     margin-bottom: 20px;
     animation: fadeInUp 0.6s ease;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
 }
 
 .modern-destinations-header p {
@@ -132,6 +157,7 @@ $countries = $countriesStmt->fetchAll(PDO::FETCH_COLUMN);
     font-size: 1.3rem;
     margin-bottom: 0;
     animation: fadeInUp 0.6s ease 0.2s both;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.5);
 }
 
 .modern-destinations-section {
@@ -431,6 +457,11 @@ $countries = $countriesStmt->fetchAll(PDO::FETCH_COLUMN);
 
 <!-- Modern Destinations Header -->
 <section class="modern-destinations-header">
+    <video class="header-video" autoplay muted loop playsinline>
+        <source src="<?php echo ASSETS_URL; ?>/images/VIDEO-2026-01-17-18-22-17.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="header-overlay"></div>
     <div class="container">
         <div class="dest-icon">
             <i class="fas fa-globe-asia"></i>
