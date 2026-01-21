@@ -80,7 +80,7 @@ if (MAINTENANCE_MODE && !isLoggedIn()) {
                 <div class="modern-nav-wrapper">
                     <div class="modern-logo">
                         <a href="<?php echo SITE_URL; ?>">
-                            <img src="https://ichhedanaexpeditions.com/usercontent/1776478732.png" alt="<?php echo SITE_NAME; ?>">
+                            <img src="<?php echo ASSETS_URL; ?>/images/logo.png" alt="<?php echo SITE_NAME; ?>">
                         </a>
                     </div>
                     
@@ -245,6 +245,11 @@ if (MAINTENANCE_MODE && !isLoggedIn()) {
         display: flex;
         justify-content: space-between;
         align-items: center;
+        gap: 30px;
+    }
+    
+    .modern-logo {
+        flex-shrink: 0;
     }
     
     .modern-logo a {
@@ -257,15 +262,18 @@ if (MAINTENANCE_MODE && !isLoggedIn()) {
     }
     
     .modern-logo img {
-        height: 65px;
+        height: 60px;
         width: auto;
         display: block;
         filter: brightness(0) saturate(100%) invert(100%);
-        transition: filter 0.3s ease;
+        transition: all 0.3s ease;
+        -webkit-filter: brightness(0) saturate(100%) invert(100%);
     }
     
     .modern-logo a:hover img {
-        filter: brightness(0) saturate(100%) invert(100%) opacity(0.8);
+        filter: brightness(0) saturate(100%) invert(100%) drop-shadow(0 0 8px rgba(255,255,255,0.5));
+        -webkit-filter: brightness(0) saturate(100%) invert(100%) drop-shadow(0 0 8px rgba(255,255,255,0.5));
+        transform: scale(1.02);
     }
     
     .modern-nav-menu {
