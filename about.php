@@ -1,12 +1,12 @@
 <?php
 $page_title = 'About Us';
-$meta_description = 'Learn about Ichhedana Expeditions - your trusted partner for wildlife photography tours across India and Bhutan.';
+$meta_description = 'Learn about Wings of Desire - your trusted partner for wildlife photography tours across India and Bhutan.';
 require_once __DIR__ . '/includes/header.php';
 ?>
 
 <!--  <section class="page-header">
     <div class="container">
-        <h1>About Ichhedana Expeditions</h1>
+        <h1>About Wings of Desire</h1>
         <p>Wings of Desire: Your Gateway to Nature's Wonders</p>
     </div>
 </section> -->
@@ -68,11 +68,11 @@ require_once __DIR__ . '/includes/header.php';
     <div class="container">
         <div class="about-grid">
             <div class="about-image">
-                <img src="<?php echo ASSETS_URL; ?>/images/about-hero.jpg" alt="About Ichhedana Expeditions">
+                <img src="<?php echo ASSETS_URL; ?>/images/about-hero.jpg" alt="About Wings of Desire">
             </div>
             <div class="about-content">
                 <h2>Who We Are</h2>
-                <p>Ichhedana Expeditions is a premier wildlife photography tour operator based in Kolkata, India. We specialize in organizing expertly guided photography expeditions to some of the most spectacular wildlife destinations across India and Bhutan.</p>
+                <p>Wings of Desire is a premier wildlife photography tour operator based in Kolkata, India. We specialize in organizing expertly guided photography expeditions to some of the most spectacular wildlife destinations across India and Bhutan.</p>
                 <p>With years of experience in the field of wildlife photography and nature tourism, we understand what it takes to capture that perfect shot. Our team of experienced naturalists and photographers are passionate about wildlife conservation and committed to providing you with unforgettable experiences in nature.</p>
                 <p>We believe that wildlife photography is not just about taking pictures; it's about understanding animal behavior, respecting nature, and creating awareness about conservation. Every expedition we organize is carefully planned to maximize your photography opportunities while ensuring minimal disturbance to wildlife.</p>
             </div>
@@ -84,7 +84,7 @@ require_once __DIR__ . '/includes/header.php';
     <div class="container">
         <div class="section-header text-center">
             <h2>Why Choose Us</h2>
-            <p>What makes Ichhedana Expeditions your best choice for wildlife photography tours</p>
+            <p>What makes Wings of Desire your best choice for wildlife photography tours</p>
         </div>
         
         <div class="features-grid">
@@ -220,7 +220,7 @@ require_once __DIR__ . '/includes/header.php';
     <div class="container">
         <div class="cta-content text-center">
             <h2>Ready to Join Us?</h2>
-            <p>Start your wildlife photography adventure with Ichhedana Expeditions</p>
+            <p>Start your wildlife photography adventure with Wings of Desire</p>
             <div class="cta-buttons">
                 <a href="<?php echo SITE_URL; ?>/tours.php" class="btn btn-primary btn-lg">View Our Tours</a>
                 <a href="<?php echo SITE_URL; ?>/contact.php" class="btn btn-outline-light btn-lg">Contact Us</a>

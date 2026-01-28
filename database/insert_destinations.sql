@@ -15,8 +15,8 @@ Meghalaya offers photographers incredible opportunities to capture misty mountai
 'Meghalaya is home to diverse wildlife including Asian elephants, clouded leopards, red pandas (in higher elevations), various species of macaques, hoolock gibbons, and over 800 bird species including hornbills, pheasants, and numerous endemic species. The Living Root Bridges area offers excellent opportunities for bird photography, particularly during winter months when migratory species arrive.',
 
 'uploads/destinations/meghalaya.jpg',
-'Meghalaya - Photography Destination | Ichhedana Expeditions',
-'Explore Meghalaya with Ichhedana Expeditions. Discover living root bridges, waterfalls, and incredible wildlife photography opportunities in India''s wettest state.',
+'Meghalaya - Photography Destination | Wings of Desire',
+'Explore Meghalaya with Wings of Desire. Discover living root bridges, waterfalls, and incredible wildlife photography opportunities in India''s wettest state.',
 'published', 1, 1),
 
 ('Sikkim', 'sikkim', 'Sikkim', 'India',
@@ -31,8 +31,8 @@ This Himalayan paradise offers unparalleled opportunities for landscape and wild
 'Sikkim is renowned for its biodiversity, hosting red pandas, snow leopards, Himalayan black bears, clouded leopards, blue sheep, and musk deer. The state is a birdwatcher''s paradise with over 550 species including blood pheasants, satyr tragopans, and various species of eagles and vultures. The Khangchendzonga National Park is a UNESCO World Heritage Site and home to many rare and endangered species.',
 
 'uploads/destinations/sikkim.jpg',
-'Sikkim - Himalayan Photography Paradise | Ichhedana Expeditions',
-'Experience the beauty of Sikkim with Ichhedana Expeditions. Photograph Himalayan peaks, red pandas, rare birds, and ancient monasteries in India''s cleanest state.',
+'Sikkim - Himalayan Photography Paradise | Wings of Desire',
+'Experience the beauty of Sikkim with Wings of Desire. Photograph Himalayan peaks, red pandas, rare birds, and ancient monasteries in India''s cleanest state.',
 'published', 1, 2),
 
 ('Kaziranga National Park', 'kaziranga-national-park', 'Assam', 'India',
@@ -47,6 +47,6 @@ Kaziranga is considered one of India''s premier wildlife destinations and offers
 'Kaziranga is home to over 2,400 one-horned rhinoceros (two-thirds of the world''s population), approximately 1,200 wild elephants, 1,000+ wild water buffalo, and healthy populations of tigers. The park hosts over 500 bird species including pelicans, storks, ducks, herons, and the endangered Bengal florican. The park also has significant populations of hog deer, sambar deer, and various primate species.',
 
 'uploads/destinations/kaziranga.jpg',
-'Kaziranga National Park - One-Horned Rhino Photography | Ichhedana Expeditions',
-'Photograph one-horned rhinoceros, elephants, and tigers in Kaziranga National Park. Join Ichhedana Expeditions for unforgettable wildlife photography.',
+'Kaziranga National Park - One-Horned Rhino Photography | Wings of Desire',
+'Photograph one-horned rhinoceros, elephants, and tigers in Kaziranga National Park. Join Wings of Desire for unforgettable wildlife photography.',
 'published', 1, 3);

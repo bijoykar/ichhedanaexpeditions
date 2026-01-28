@@ -1,6 +1,6 @@
 <?php
 $page_title = 'Contact Us';
-$meta_description = 'Get in touch with Ichhedana Expeditions for wildlife photography tours and expeditions. Contact us for bookings and inquiries.';
+$meta_description = 'Get in touch with Wings of Desire for wildlife photography tours and expeditions. Contact us for bookings and inquiries.';
 require_once __DIR__ . '/includes/header.php';
 
 // Handle form submission

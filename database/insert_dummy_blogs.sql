@@ -1,4 +1,4 @@
--- Dummy Blog Posts for Ichhedana Expeditions
+-- Dummy Blog Posts for Wings of Desire
 USE ichhedana_expeditions;
 
 -- Insert dummy blog posts

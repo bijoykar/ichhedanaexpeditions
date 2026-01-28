@@ -1,4 +1,4 @@
--- Insert Tour Data for Ichhedana Expeditions
+-- Insert Tour Data for Wings of Desire
 USE ichhedana_expeditions;
 
 -- Meghalaya Tour (3 Nights / 4 Days)

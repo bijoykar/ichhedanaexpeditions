@@ -1,6 +1,6 @@
 <?php
 /**
- * Ichhedana Expeditions - Production Configuration
+ * Wings of Desire - Production Configuration
  * 
  * @package IchhedanaExpeditions
  * @version 1.0
@@ -26,7 +26,7 @@ define('DB_CHARSET', 'utf8mb4');
 
 // Site Configuration - PRODUCTION
 define('SITE_URL', 'http://143.244.141.5/ichhedanaexpeditions');
-define('SITE_NAME', 'Ichhedana Expeditions');
+define('SITE_NAME', 'Wings of Desire');
 define('SITE_TAGLINE', 'Wildlife Photography Tours & Expeditions');
 define('SITE_EMAIL', 'ichhedanaexpeditions@gmail.com');
 define('SITE_PHONE', '9007820752');
@@ -80,7 +80,7 @@ define('SMTP_PORT', 587);
 define('SMTP_USERNAME', 'ichhedanaexpeditions@gmail.com');
 define('SMTP_PASSWORD', ''); // Add SMTP password
 define('SMTP_ENCRYPTION', 'tls');
-define('EMAIL_FROM_NAME', 'Ichhedana Expeditions');
+define('EMAIL_FROM_NAME', 'Wings of Desire');
 define('EMAIL_FROM_ADDRESS', 'ichhedanaexpeditions@gmail.com');
 
 // Social Media URLs
@@ -89,7 +89,7 @@ define('FACEBOOK_GROUP_URL', 'https://www.facebook.com/groups/2010223942443396/'
 define('INSTAGRAM_URL', 'https://www.instagram.com/ichhedanaexpeditions/');
 
 // SEO Settings
-define('DEFAULT_META_DESCRIPTION', 'Ichhedana Expeditions offers professional wildlife photography tours to national parks across India and Bhutan. Led by experienced wildlife photographers.');
+define('DEFAULT_META_DESCRIPTION', 'Wings of Desire offers professional wildlife photography tours to national parks across India and Bhutan. Led by experienced wildlife photographers.');
 define('DEFAULT_META_KEYWORDS', 'wildlife photography, photography tours, wildlife expeditions, nature photography, India tours, Bhutan tours');
 
 // Maintenance Mode

@@ -1,5 +1,5 @@
 /**
- * Ichhedana Expeditions - Main JavaScript
+ * Wings of Desire - Main JavaScript
  * jQuery-based functionality
  */
 

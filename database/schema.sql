@@ -1,4 +1,4 @@
--- Ichhedana Expeditions Database Schema
+-- Wings of Desire Database Schema
 -- Database: ichhedana_expeditions
 
 CREATE DATABASE IF NOT EXISTS ichhedana_expeditions CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
@@ -204,7 +204,7 @@ VALUES ('admin', 'admin@ichhedanaexpeditions.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Y
 
 -- Insert Default Site Settings
 INSERT INTO site_settings (setting_key, setting_value, setting_type, setting_group, description) VALUES
-('site_name', 'Ichhedana Expeditions', 'text', 'general', 'Website name'),
+('site_name', 'Wings of Desire', 'text', 'general', 'Website name'),
 ('site_tagline', 'Wildlife Photography Tours & Expeditions', 'text', 'general', 'Website tagline'),
 ('contact_phone', '9007820752', 'text', 'contact', '24/7 Support phone number'),
 ('contact_email', 'ichhedanaexpeditions@gmail.com', 'text', 'contact', 'Contact email'),
@@ -212,7 +212,7 @@ INSERT INTO site_settings (setting_key, setting_value, setting_type, setting_gro
 ('facebook_url', 'https://www.facebook.com/profile.php?id=100063782000455', 'text', 'social', 'Facebook profile URL'),
 ('facebook_group_url', 'https://www.facebook.com/groups/2010223942443396/', 'text', 'social', 'Facebook group URL'),
 ('instagram_url', 'https://www.instagram.com/ichhedanaexpeditions/', 'text', 'social', 'Instagram profile URL'),
-('site_description', 'Ichhedana Expeditions offers professional wildlife photography tours to national parks across India and Bhutan. Led by experienced wildlife photographers.', 'textarea', 'seo', 'Site meta description'),
+('site_description', 'Wings of Desire offers professional wildlife photography tours to national parks across India and Bhutan. Led by experienced wildlife photographers.', 'textarea', 'seo', 'Site meta description'),
 ('site_keywords', 'wildlife photography, photography tours, wildlife expeditions, nature photography, India tours, Bhutan tours', 'text', 'seo', 'Site meta keywords');
 
 -- Create Indexes for Better Performance
